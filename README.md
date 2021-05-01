@@ -36,3 +36,17 @@ git commit -m "適切なメッセージ(作業内容とか)"
 # git add, git commitを複数回やったあと、一気にpushしてもOK
 git push origin 先ほど作ったローカルブランチ
 ```
+
+## ディレクトリ構造
+
+```shell
+p-course
+├── .venv               # Python仮想環境用
+├── Pipfile             # Python仮想環境用
+├── Pipfile.lock        # Python仮想環境用
+├── README.md
+├── css                 # CSS
+├── src                 # Pythonソースコード
+├── template            # HTMLテンプレート
+└── test                # テスト(多分いらない)
+```
