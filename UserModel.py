@@ -28,7 +28,14 @@ class videoInfo(Base):
         self.kind=kind
     
     def __repr__(self):
-        return "id:"+self.id+"タイトル:"+self.title+",チャンネル名:"+self.channel+",概要欄:"+self.description+",再生数:"+str(self.viewCount)+",URL:"+self.videoURL+",サムネ:"+self.imageURL+",動画サイト名:"+self.kind
+        return "id:"+self.id+ \
+                ",タイトル:"+self.title+ \
+                ",\nチャンネル名:"+self.channel+ \
+                ",\n概要欄:"+self.description+ \
+                ",\n再生数:"+str(self.viewCount)+ \
+                ",\nURL:"+self.videoURL+ \
+                ",\nサムネ:"+self.imageURL+ \
+                ",\n動画サイト名:"+self.kind
     
 
   
