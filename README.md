@@ -14,6 +14,25 @@ cd p-course
 pipenv install
 ```
 
+### 仮想環境について
+
+pipでライブラリとかを直接インストールできますが、
+グローバルインストールなので、それを避けてプロジェクトごとにインストールしたい。
+そのためにpipenvを使っています。
+デフォルトの仮想環境の場所は：
+
+- Windowsは`%userprofile%\.virtualenvs`
+- LinuxやMacOSは`$HOME/.local/share/virtualenvs`
+
+となっています。場所を変えたければ、[こちら](https://qiita.com/y-tsutsu/items/54c10e0b2c6b565c887a#%E4%BB%AE%E6%83%B3%E7%92%B0%E5%A2%83%E9%96%A2%E9%80%A3%E3%81%AE%E6%93%8D%E4%BD%9C)を参照してください。
+
+### 実行の仕方
+
+```shell
+# 「start」というのは、Pipfileファイルに書いた「start = "python src/main.py"」のこと
+pipenv run start
+```
+
 ## 作業について
 
 基本的に`main`ブランチで作業しない方がいいでしょう。  
