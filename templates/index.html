@@ -2,7 +2,35 @@
 
 {% block body %}
 <form action="/" method="POST">
-    <input type="text" name="word">
-    <input type="submit" value="検索">
+    <!-- Jumbotron -->
+    <div class="p-5 text-center bg-light" style=" height: 90vh;">
+        <h1 class="mb-3">Cross Search</h1>
+        <h4 class="mb-3">Let's find interesting and fascinating videos.</h4>
+        <div class="card">
+            <div class="card-body p-4">
+                <div class="row">
+                    <div class="col-12 mb-4">
+                        <div class="input-group">
+                            <div class="form-outline flex-fill">
+                                <input type="search" id="form1" name="word" class="form-control form-control-lg"/>
+                                <label class="form-label" for="form1">Search for video in YouTube and NicoNico</label>
+                                <div class="form-helper pt-2">
+                                    <span class="font-weight-bold">
+                                        You can simultaneously search videos from <a href="https://www.youtube.com"
+                                                                                     target="_blank">youtube.com</a> and <a
+                                            href="https://www.nicovideo.jp/" target="_blank">nicovideo.jp</a> on this website.
+                                    </span>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Jumbotron -->
 </form>
 {% endblock %}
