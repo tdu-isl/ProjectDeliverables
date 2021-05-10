@@ -16,16 +16,16 @@
                     <div class="card mb-3">
                         <div class="row g-0">
                             <div class="col-md-4 pt-3 pb-3 img-fluid d-flex align-items-center justify-content-center">
-                                <img
+                                <a href="{{ video.videoURL }}" target="_blank"> <img
                                         src="{{ video.imageURL }}"
                                         alt="{{ video.title }}"
                                         class="rounded"
                                         width="250px"
-                                />
+                                /></a>
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="fw-bold">{{ video.title }}</h5>
+                                    <h5 class="fw-bold"><a href="{{ video.videoURL }}" target="_blank">{{ video.title }}</a></h5>
                                     <div class="overflow-auto text-left fw-light bg-light" style="max-height: 120px;">
                                          <small >
                                         {{ video.description }}
