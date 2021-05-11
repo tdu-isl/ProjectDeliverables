@@ -1,1 +1,3 @@
 .venv
+backend/__pycache__
+backend/routers/__pycache__
