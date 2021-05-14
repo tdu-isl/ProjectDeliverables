@@ -8,6 +8,10 @@ fastapi = "*"
 uvicorn = "*"
 flask = "*"
 flask-login = "*"
+requests = "*"
+peewee = "*"
+python-jose = "*"
+python-multipart = "*"
 
 [dev-packages]
 
@@ -15,4 +19,5 @@ flask-login = "*"
 python_version = "3.9"
 
 [scripts]
-start = "python src/main.py"
+fe = "python frontend/main.py"
+be = "python backend/api.py"
