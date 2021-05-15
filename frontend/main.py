@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from flask import Flask, request, Response, flash, render_template, redirect, make_response
-from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin
+from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin, current_user
 from datetime import datetime
 from collections import defaultdict
 import requests
@@ -80,7 +80,7 @@ def test():
             max_age = 60 * 60 * 24 # 24h
             expires = int(datetime.now().timestamp()) + max_age
             response.set_cookie(
-                'token',
+                user_name + '_token',
                 value=tokens['access_token'],
                 max_age=max_age,
                 expires=expires,
@@ -98,8 +98,10 @@ def test():
 @app.route('/logout')
 @login_required
 def logout():
+    response = make_response(redirect('/login'))
+    response.delete_cookie(current_user.name + '_token')
     logout_user()
-    return redirect('/login')
+    return response
 
 if __name__ == '__main__':
     import ssl
