@@ -12,6 +12,7 @@ requests = "*"
 peewee = "*"
 python-jose = "*"
 python-multipart = "*"
+flash = "*"
 
 [dev-packages]
 
