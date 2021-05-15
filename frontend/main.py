@@ -102,4 +102,9 @@ def logout():
     return redirect('/login')
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0",port=8000,debug=True)
+    import ssl
+    ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
+    ssl_context.load_cert_chain(
+        'ssl/fullchain1.pem', 'ssl/privkey1.pem'
+    )
+    app.run(host="0.0.0.0",port=8000,debug=True, ssl_context=ssl_context)

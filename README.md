@@ -66,6 +66,9 @@ p-course
 ├── Pipfile             # Python仮想環境用
 ├── Pipfile.lock        # Python仮想環境用
 ├── README.md
+├── ssl
+│   ├── fullchain1.pem  # 証明書
+│   └── privkey1.pem    # SSL 秘密鍵
 ├── backend
 │   ├── api.py
 │   ├── db
