@@ -7,7 +7,7 @@ from peewee import SqliteDatabase, Model, AutoField, CharField, TextField
 
 router = APIRouter()
 
-db = SqliteDatabase('backend/db/db.sqlite3')
+db = SqliteDatabase('backend/db/c.db')
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
