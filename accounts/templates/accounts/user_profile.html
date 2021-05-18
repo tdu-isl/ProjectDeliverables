@@ -1,46 +1,23 @@
-{% extends "base.html" %}
+{% extends "./base.html" %}
 
 {% block content %}
-<div id="profile_page">
-    <div id="user_status">
-        <h2>{{ User.username }}</h2>
-        <p class="followBtn">フォローする</p>
+<div class="container mt-3 mb-5">
+    <h2>{{ User.username }}のマイページ</h2>
+    {% if user.is_authenticated and User.username == user.username %}
+    <div class="post-create">
+        <a href='' class="btn btn-secondary mb-3">GIFの作成</a>
     </div>
-    <div id="user_post">
+    {% endif %}
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+
+        {% for post in Posts %}
+        <div class="col">
+            <p>投稿者:{{ post.account }}</p>
+            <p>{{ post.content }}</p>
+            <img src="{{ post.image.url }}" class="img-fluid img-thumbnail">
+            <p>{{ post.created_at }}</p>
+        </div>
+        {% endfor %}
     </div>
 </div>
-
-<style type="text/css">
-    * {
-        margin: 0;
-        padding: 0;
-        background-repeat: repeat-y;
-    }
-
-    #profile_page {
-        padding-left: 3%;
-    }
-
-    #user_status {
-        display: inline-block;
-    }
-
-    .followBtn {
-        display: inline-block;
-        border: 1.5px solid #ddd;
-        padding: 2px 8px;
-        font-size: 16.5px;
-    }
-
-    #user_post {
-        display: inline-block;
-        vertical-align: top;
-        margin-left: 70px;
-    }
-
-    .list-t {
-        font-size: 1.9rem;
-        font-weight: 700;
-    }
-</style>
 {% endblock %}
