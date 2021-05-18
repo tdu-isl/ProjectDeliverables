@@ -1,0 +1,15 @@
+{% extends './base.html' %}
+{% block content %}
+
+<h1>投稿</h1>
+
+<form action='' method='post'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type='submit' class='submit'>投稿</button>
+</form>
+<div>
+    <a href='JavaScript:history.back()'>&lt; 戻る</a>
+</div>
+
+{% endblock %}

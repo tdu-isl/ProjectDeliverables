@@ -1,0 +1,12 @@
+{% extends './base.html' %}
+{% load cloudinary %}
+
+{% block content %}
+<h2>投稿一覧</h2>
+{% for post in object_list %}
+<p>{{ post.account }}</p>
+<p>{{ post.content }}</p>
+{% cloudinary post.image.url width=300 height=150 %}
+<p>{{ post.created_at }}</p>
+{% endfor %}
+{% endblock %}
