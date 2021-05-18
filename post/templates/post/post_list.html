@@ -1,12 +1,26 @@
 {% extends './base.html' %}
+{% block title %}ポスト一覧{% endblock %}
 {% load cloudinary %}
 
 {% block content %}
-<h2>投稿一覧</h2>
-{% for post in object_list %}
-<p>{{ post.account }}</p>
-<p>{{ post.content }}</p>
-{% cloudinary post.image.url width=300 height=150 %}
-<p>{{ post.created_at }}</p>
-{% endfor %}
+<div class="container mt-3 mb-5">
+    <h2>投稿一覧</h2>
+    {% if user.is_authenticated %}
+    <div class="post-create">
+        <a href='{% url "post:create" %}' class="btn btn-secondary mb-3">新しいポストの追加</a>
+    </div>
+    {% endif %}
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+
+        {% for post in object_list %}
+        <div class="col">
+            <p>投稿者:{{ post.account }}</p>
+            <p>{{ post.content }}</p>
+            <img src="{{ post.image.url }}" class="img-fluid img-thumbnail">
+            <p>{{ post.created_at }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
 {% endblock %}
