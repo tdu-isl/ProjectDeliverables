@@ -33,7 +33,6 @@ ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
-    'whitenoise.runserver_nostatic',
     'post.apps.PostConfig',
     'accounts.apps.AccountsConfig',
     'django.contrib.admin',
@@ -41,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.staticfiles',
     # django-allauth
     'django.contrib.sites',
     'allauth',
@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'cloudinary',
     'cloudinary_storage',
-    'django.contrib.staticfiles',
+    'whitenoise.runserver_nostatic',
     'axes',
 ]
 

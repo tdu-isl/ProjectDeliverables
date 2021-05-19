@@ -174,3 +174,4 @@ pip-selfcheck.json
 # End of https://www.toptal.com/developers/gitignore/api/django,venv
 
 local_settings.py
+staticfiles/
