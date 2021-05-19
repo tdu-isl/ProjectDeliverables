@@ -188,6 +188,7 @@ def index():
 def register_record():
 
     word = request.form.get("word")
+
     # ニコニコ動画
     nico_res(word)
     #you_res(word)
@@ -201,7 +202,17 @@ def register_record():
 
 
     # databaseをリスト型で取得
-    db_videoInfo = session.query(videoInfo).all()
+
+
+    sort = request.form.get("sort")
+    print(sort)
+    if sort:
+        print("ソート実行")
+        db_videoInfo = video_sort(sort)
+    else:
+        db_videoInfo = session.query(videoInfo).all()
+
+
     """
     #ソートのkeyを持ってくる
     sort = request.form.get("sort")
@@ -224,7 +235,7 @@ def register_record():
     session.commit()
     video.clear()
 
-    return render_template('index2.html', db_videoInfo=db_videoInfo)
+    return render_template('index2.html', db_videoInfo=db_videoInfo, word=word)
 
 
 # return redirect("/")
