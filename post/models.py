@@ -5,7 +5,7 @@ from cloudinary.models import CloudinaryField
 
 class Post(models.Model):
     content = models.TextField()
-    image = models.ImageField(upload_to='images/', blank=True)
+    image = models.ImageField(upload_to='images/')
     created_at = models.DateTimeField(auto_now_add=True)
 
     account = models.ForeignKey(

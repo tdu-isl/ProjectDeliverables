@@ -16,7 +16,9 @@
         <div class="col">
             <p>投稿者: <a href="{% url 'accounts:profile' post.account.username %}">{{ post.account }}</a></p>
             <p>{{ post.content }}</p>
+            {% if post.image %}
             <img src="{{ post.image.url }}" class="img-fluid img-thumbnail">
+            {% endif %}
             <p>{{ post.created_at }}</p>
         </div>
         {% endfor %}

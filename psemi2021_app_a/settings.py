@@ -48,6 +48,12 @@ INSTALLED_APPS = [
     'cloudinary',
     'cloudinary_storage',
     'django.contrib.staticfiles',
+    'axes',
+]
+
+AUTHENTICATION_BACKENDS = [
+    'axes.backends.AxesBackend',
+    'django.contrib.auth.backends.ModelBackend',
 ]
 
 CLOUDINARY_STORAGE = {
@@ -67,7 +73,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware'
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'axes.middleware.AxesMiddleware',
 ]
 
 ROOT_URLCONF = 'psemi2021_app_a.urls'
@@ -169,3 +176,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # not sendmail
 
 db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
 DATABASES['default'].update(db_from_env)
+
+# AXES
+AXES_FAILURE_LIMIT = 5  # ログイン失敗回数の上限
+AXES_COOLOFF_TIME = 1  # 1時間のアカウントロック
+AXES_ONLY_USER_FAILURES = True  # アカウント毎によるロック（デフォルトはＩＰアドレス）
+AXES_RESET_ON_SUCCESS = True  # ログイン成功時に失敗回数リセット
