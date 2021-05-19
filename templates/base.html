@@ -1,13 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="jp">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cross Search - P-Semi</title>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+          rel="stylesheet"/>
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" rel="stylesheet"/>
+
+
+    <style>
+        #fadeContent::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff; /* 背景カラー */
+            z-index: 9999; /* 一番手前に */
+            pointer-events: none; /* 他の要素にアクセス可能にするためにポインターイベントは無効に */
+            opacity: 0; /* 初期値 : 透過状態 */
+            -webkit-transition: opacity .8s ease; /* アニメーション時間は 0.8秒 */
+            transition: opacity .8s ease;
+        }
+
+        #fadeContent.content::after {
+            opacity: 1;
+        }
+    </style>
     {% block head %}{% endblock %}
 </head>
 <body>
-    {% block body %}{% endblock %}
+<header>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Cross Search</a>
+            <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-mdb-toggle="collapse"
+                    data-mdb-target="#navbar"
+                    aria-controls="navbar"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+            >
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="./">Home</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar -->
+
+
+</header>
+{% block body %}{% endblock %}
+<footer class="bg-light text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+        2020 P-Semi Group B
+    </div>
+    <!-- Copyright -->
+</footer>
+<!-- MDB -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"></script>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" crossorigin="anonymous"></script>
+    <script>
+
+
+        var fadeTime = 800,
+            fadeSelector = 'content';
+        $(function () {
+            $('a:not([href^="#"]):not([target])').on('click', function (e) {
+                e.preventDefault();
+                url = $(this).attr('href');
+                if (url !== '') {
+                    $('div').addClass(fadeSelector);
+                    setTimeout(function () {
+                        window.location = url;
+                    }, fadeTime);
+                }
+                return false;
+            });
+
+        });
+        $(window).on('load', function () {
+            $('div').removeClass(fadeSelector);
+        });
+    </script>
 </body>
 </html>

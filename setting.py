@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 import psycopg2
 
 # postgresqlのDBの設定
-DATABASE = "postgresql://postgres:chancy_anecdote_smear@wsp2020.yoitsu.dev:5432/psemi"
+DATABASE = "postgresql://tawztfdasmwrhz:feadf96d4fbd29155a09b03e7ca5d753238a283991fe4283103d9a0a47946abe@ec2-34-236-215-156.compute-1.amazonaws.com:5432/d8kt6miao94dup"
 
 # Engineの作成
 ENGINE = create_engine(

@@ -11,6 +11,8 @@ from os.path import join, dirname
 
 video = []
 
+
+
 # インスタンス化し、videoリストに入れる(nico)
 def nico_res(word):
     # 動画情報取得
@@ -34,14 +36,26 @@ def nico_res(word):
     def getTitle(i):
         return res["data"][i]["title"]
 
+ #   def getChannel(i):
+ #       chaUrl = "https://ext.nicovideo.jp/api/getthumbinfo/" + res["data"][i]["contentId"]
+ #       chareq = requests.get(chaUrl)
+ #       channel = chareq.text[chareq.text.find('<user_nickname>') + 15:chareq.text.find('</user_nickname>')]
+ #       return channel
+
     def getChannel(i):
         chaUrl = "https://ext.nicovideo.jp/api/getthumbinfo/" + res["data"][i]["contentId"]
         chareq = requests.get(chaUrl)
-        channel = chareq.text[chareq.text.find('<user_nickname>') + 15:chareq.text.find('</user_nickname>')]
+        if (res["data"][i]["contentId"].find("nm") == -1) and (res["data"][i]["contentId"].find("sm") == -1):
+            channel = chareq.text[chareq.text.find('<ch_name>') + 9:chareq.text.find('</ch_name>')]
+
+        else:
+            channel = chareq.text[chareq.text.find('<user_nickname>') + 15:chareq.text.find('</user_nickname>')]
         return channel
 
     def getDescription(i):
-        description = res["data"][i]["description"].replace("<br />", "").replace("<br>","").replace("</span>","").replace("<span style=\"color: #000000; font-size: 13px;\">","")
+        description = res["data"][i]["description"].replace("<br />", "").replace("<br>", "").replace("</span>",
+                                                                                                      "").replace(
+            "<span style=\"color: #000000; font-size: 13px;\">", "")
         return description
 
     def getViewCounter(i):
@@ -133,7 +147,7 @@ def register_record():
 
     # ニコニコ動画
     nico_res(word)
-    you_res(word)
+    #you_res(word)
     for i in range(len(video)):
         new_video = videoInfo(id=video[i].id, title=video[i].title, channel=video[i].channel,
                               description=video[i].description, viewCount=video[i].viewCount,
@@ -141,20 +155,33 @@ def register_record():
         session.add(new_video)
 
     session.commit()
-    return redirect("/")
 
 
-# 取得処理
-@app.route('/index2')
-def index2():
-    #databaseをリスト型で取得
+    # databaseをリスト型で取得
     db_videoInfo = session.query(videoInfo).all()
-    #既存のDBは次の検索の為に削除
+    # 既存のDBは次の検索の為に削除
     session.query(videoInfo).delete()
     session.commit()
     video.clear()
 
     return render_template('index2.html', db_videoInfo=db_videoInfo)
+
+
+# return redirect("/")
+
+
+# 取得処理
+@app.route('/index2')
+def index2():
+    # databaseをリスト型で取得
+    db_videoInfo = session.query(videoInfo).all()
+    # 既存のDBは次の検索の為に削除
+    session.query(videoInfo).delete()
+    session.commit()
+    video.clear()
+
+    return render_template('index2.html', db_videoInfo=db_videoInfo)
+
 
 if __name__ == '__main__':
     app.debug = True
