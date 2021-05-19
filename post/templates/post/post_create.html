@@ -2,11 +2,11 @@
 {% block title %}ポストの作成{% endblock %}
 {% block content %}
 <div class="container">
-    <h1>投稿</h1>
+    <h1 class="mt-5">投稿</h1>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">送信</button>
+        <button type="submit" class="btn btn-secondary">送信</button>
     </form>
 </div>
 {% endblock %}

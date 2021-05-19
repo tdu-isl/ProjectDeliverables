@@ -1,23 +1,32 @@
 {% extends "./base.html" %}
+{% load static %}
 
+{% block head %}
+<link href="{% static 'css/posts.css' %}" rel="stylesheet">
+{% endblock %}
 {% block content %}
 <div class="container mt-3 mb-5">
-    <h2>{{ User.username }}のマイページ</h2>
+    <h2 class="mt-5">{{ User.username }}'s mypage</h2>
     {% if user.is_authenticated and User.username == user.username %}
-    <!--
-    <div class="post-create">
-        <a href='' class="btn btn-secondary mb-3">GIFの作成</a>
-    </div> -->
     {% endif %}
     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
 
         {% for post in Posts %}
-        <div class="col">
-            <p>投稿者:{{ post.account }}</p>
-            <p>{{ post.content }}</p>
-            <img src="{{ post.image.url }}" class="img-fluid img-thumbnail">
-            <p>{{ post.created_at }}</p>
-            <a href="{% url 'post:delete' post.pk %}" class="btn btn-secondary mb-3">削除</a>
+        <div class="col mb-3">
+            <div class="card">
+                <h5 class="card-header">Poster: <a
+                        href="{% url 'accounts:profile' post.account.username %}">{{ post.account }}</a></h5>
+                <div class="card-body">
+                    <p class="card-text">{{ post.content }}</p>
+                </div>
+                <a href="{{ post.image.url }}" data-toggle="lightbox">
+                    <img src="{{ post.image.url }}" class="img-fluid mb-3">
+                </a>
+                <div class="card-footer text-muted">
+                    {{ post.created_at }}
+                    <!-- <a href="{% url 'post:delete' post.pk %}" class="btn btn-secondary mb-3">Delete</a> -->
+                </div>
+            </div>
         </div>
         {% endfor %}
     </div>
