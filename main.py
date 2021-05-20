@@ -25,7 +25,7 @@ def nico_res(word):
               'fields': 'title,description,contentId,thumbnailUrl,viewCounter,lengthSeconds,startTime',
               '_sort': '-viewCounter',
               '_context': 'apiguide',
-              '_limit': '10'
+              '_limit': '20'
               }
 
     req = requests.get(url, params=params)
@@ -89,7 +89,7 @@ def you_res(word):
               'part': 'snippet',
               'q': word,
               'key': os.environ.get("Youtube_API_KEY"),
-              'maxResults': '1',
+              'maxResults': '20',
               'regionCode': 'jp',
               'fields': 'items(id(videoId),snippet(title,description,channelTitle,publishedAt,thumbnails(high(url))))'
               }
