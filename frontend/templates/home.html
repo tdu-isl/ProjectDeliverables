@@ -19,10 +19,13 @@
 
     <div>
         <h2>{{ user }}</h2>
+        <form method="get" action="logout">
+            <button type="submit" name="action" value="logout">ログアウト</button>
+        </form>
         <hr>
 
         <form method="post">
-            <button type="submit" value="update-order-list">送信する</button>
+            <button type="submit" name="action" value="update">注文リストを更新する</button>
         </form>
         
         {% if orders %}
