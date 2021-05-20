@@ -205,9 +205,10 @@ def register_record():
 
 
     sort = request.form.get("sortPattern")
-    print(sort)
+    alert = ""
+
     if sort:
-        print("ソート実行")
+        alert = "並び替えを行いました。"
         db_videoInfo = video_sort(sort)
     else:
         db_videoInfo = session.query(videoInfo).all()
@@ -235,7 +236,7 @@ def register_record():
     session.commit()
     video.clear()
 
-    return render_template('index2.html', db_videoInfo=db_videoInfo, word=word)
+    return render_template('index2.html', db_videoInfo=db_videoInfo, word=word, alert=alert)
 
 
 # return redirect("/")
