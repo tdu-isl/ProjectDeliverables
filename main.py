@@ -193,7 +193,7 @@ def register_record():
 
     # ニコニコ動画
     nico_res(word)
-    # you_res(word)
+    you_res(word)
     for i in range(len(video)):
         new_video = videoInfo(id=video[i].id, title=video[i].title, channel=video[i].channel,
                               description=video[i].description, viewCount=video[i].viewCount,
