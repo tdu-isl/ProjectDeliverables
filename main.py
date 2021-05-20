@@ -49,8 +49,9 @@ def nico_res(word):
         return channel
 
     def getDescription(i):
-        description = res["data"][i]["description"].replace("<br />", "").replace("<br>", "").replace("</span>","").replace(
-                        "<span style=\"color: #000000; font-size: 13px;\">", "")
+        description = res["data"][i]["description"].replace("<br />", "").replace("<br>", "").replace("</span>",
+                                                                                                      "").replace(
+            "<span style=\"color: #000000; font-size: 13px;\">", "")
         return description
 
     def getViewCounter(i):
@@ -153,26 +154,28 @@ def you_res(word):
         # print(resvideo)
         video.append(resvideo)
 
+
 def video_sort(sort):
-    #再生数少ない方から
+    # 再生数少ない方から
     if sort == "asc_videoCount":
         db_videoInfo = session.query(videoInfo).order_by(videoInfo.viewCount).all()
-    #再生数多いい方から
+    # 再生数多いい方から
     elif sort == "des_videoCount":
         db_videoInfo = session.query(videoInfo).order_by(desc(videoInfo.viewCount)).all()
-    #再生時間少ない方から
+    # 再生時間少ない方から
     elif sort == "asc_playTime":
         db_videoInfo = session.query(videoInfo).order_by(videoInfo.playTime).all()
-    #再生時間多いい方から
+    # 再生時間多いい方から
     elif sort == "des_playTime":
         db_videoInfo = session.query(videoInfo).order_by(desc(videoInfo.playTime)).all()
-    #投稿日時早い順(古い)から
+    # 投稿日時早い順(古い)から
     elif sort == "asc_postTime":
         db_videoInfo = session.query(videoInfo).order_by(videoInfo.postTime).all()
-    #投稿日時遅い順(新しい)から
+    # 投稿日時遅い順(新しい)から
     elif sort == "des_postTime":
         db_videoInfo = session.query(videoInfo).order_by(desc(videoInfo.postTime)).all()
     return db_videoInfo
+
 
 # appという名前でFlaskのインスタンスを作成
 app = Flask(__name__)
@@ -186,33 +189,53 @@ def index():
 # 登録処理
 @app.route('/', methods=["POST"])
 def register_record():
-
     word = request.form.get("word")
 
     # ニコニコ動画
     nico_res(word)
-    #you_res(word)
+    # you_res(word)
     for i in range(len(video)):
         new_video = videoInfo(id=video[i].id, title=video[i].title, channel=video[i].channel,
                               description=video[i].description, viewCount=video[i].viewCount,
-                              videoURL=video[i].videoURL, imageURL=video[i].imageURL,postTime=video[i].postTime,playTime=video[i].playTime , kind=video[i].kind)
+                              videoURL=video[i].videoURL, imageURL=video[i].imageURL, postTime=video[i].postTime,
+                              playTime=video[i].playTime, kind=video[i].kind)
         session.add(new_video)
 
     session.commit()
 
-
     # databaseをリスト型で取得
-
 
     sort = request.form.get("sortPattern")
     alert = ""
 
     if sort:
-        alert = "並び替えを行いました。"
+        # alert = "並び替えを行いました。"
+        if sort == "asc_videoCount":
+            alert = "再生数が少ない順に並び替えました。"
+
+        # 再生数多いい方から
+        elif sort == "des_videoCount":
+            alert = "再生数が多い順に並び替えました。"
+
+        # 再生時間少ない方から
+        elif sort == "asc_playTime":
+            alert = "再生時間が短い順に並び替えました。"
+
+        # 再生時間多いい方から
+        elif sort == "des_playTime":
+            alert = "再生時間が長い順に並び替えました。"
+
+        # 投稿日時早い順(古い)から
+        elif sort == "asc_postTime":
+            alert = "投稿日時が早い順に並び替えました。"
+
+        # 投稿日時遅い順(新しい)から
+        elif sort == "des_postTime":
+            alert = "投稿日時が遅い順に並び替えました。"
+
         db_videoInfo = video_sort(sort)
     else:
         db_videoInfo = session.query(videoInfo).all()
-
 
     """
     #ソートのkeyを持ってくる
@@ -230,7 +253,7 @@ def register_record():
     #投稿日時遅い順(新しい)から　"des_postTime"
     の6つのパターン
     """
-    
+
     # 既存のDBは次の検索の為に削除
     session.query(videoInfo).delete()
     session.commit()
@@ -245,11 +268,9 @@ def register_record():
 # 取得処理
 @app.route('/index2')
 def index2():
-
-
     # databaseをリスト型で取得
     db_videoInfo = session.query(videoInfo).all()
-   
+
     # 既存のDBは次の検索の為に削除
     session.query(videoInfo).delete()
     session.commit()
