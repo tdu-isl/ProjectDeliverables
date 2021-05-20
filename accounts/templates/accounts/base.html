@@ -30,15 +30,17 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" aria-curret="page" href="{% url 'post:home' %}">Post</a>
             </ul>
-            <span class="navbar-text">
-                {% if user.is_authenticated %}
-                <a href="{% url 'accounts:profile' user.username %}">{{ user.username }}</a>さん、こんにちは。
-                {% endif %}
-            </span>
+            <ul class="navbar-nav">
+                <span class="navbar-text">
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'accounts:profile' user.username %}">{{ user.username }}</a>さん、こんにちは。
+                    {% endif %}
+                </span>
+            </ul>
             {% if user.is_authenticated %}
             <a href="{% url 'account_logout' %}">Logout</a>
             {% else %}
