@@ -70,7 +70,7 @@ def protected():
 
 # ログインパス
 @app.route('/login', methods=["GET", "POST"])
-def test():
+def login():
     if(request.method == "GET"):
         return render_template("login.html")
     
