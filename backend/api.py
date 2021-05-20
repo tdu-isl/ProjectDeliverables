@@ -1,13 +1,13 @@
 import uvicorn
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, Request
 from fastapi.security import OAuth2PasswordRequestForm
 from pydantic import BaseModel
-from routers import user, auth
+from routers import auth, orders
 
 
 api = FastAPI()
-api.include_router(user.router)
 api.include_router(auth.router)
+api.include_router(orders.router)
 
 
 class Token(BaseModel):
@@ -43,6 +43,19 @@ async def refresh_token(current_user: User = Depends(auth.get_current_user_with_
 async def read_users_me(current_user: User = Depends(auth.get_current_user)):
     """ログイン中のユーザーを取得"""
     return current_user
+
+
+@api.post("/orders/{user_name}")
+async def get_orders(user_name: str, request: Request):
+    # トークン取得
+    token = request.cookies.get(user_name + "_token")
+    print("get token: " + str(token))
+    # user id取得
+    user_id = auth.get_current_user_id(token)
+    print("get user id: " + str(user_id))
+    # orders辞書取得
+    user_orders = orders.get_orders(user_id)
+    return user_orders
 
 
 @api.get("/")

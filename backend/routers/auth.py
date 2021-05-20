@@ -70,6 +70,11 @@ def get_current_user_from_token(token: str, token_type: str):
     return user
 
 
+def get_current_user_id(token: str = Depends(oauth2_scheme)):
+    u = get_current_user_from_token(token, 'access_token')
+    return u.id
+
+
 async def get_current_user(token: str = Depends(oauth2_scheme)):
     return get_current_user_from_token(token, 'access_token')
 
