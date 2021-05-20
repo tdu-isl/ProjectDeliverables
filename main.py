@@ -204,7 +204,7 @@ def register_record():
     # databaseをリスト型で取得
 
 
-    sort = request.form.get("sort")
+    sort = request.form.get("sortPattern")
     print(sort)
     if sort:
         print("ソート実行")
