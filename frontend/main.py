@@ -7,16 +7,19 @@ import requests
 import urllib
 import json
 
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "secret"
 login_manager = LoginManager()
 login_manager.init_app(app)
+
 
 class User(UserMixin):
     def __init__(self, id, name, password):
         self.id = id
         self.name = name
         self.password = password
+
 
 # ログイン用ユーザー作成
 users = {
@@ -25,6 +28,7 @@ users = {
     #"morohashi": User(3, "morohashi", "17fi097"),
     #"ikuta": User(4, "ikuta", "18fi008")
 }
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -39,15 +43,30 @@ def load_user(user_id):
 def home():
     return redirect('/login')
 
+
 # ログインしないと表示されないパス
-@app.route('/home')
+@app.route('/home', methods=["GET", "POST"])
 @login_required
 def protected():
-    #uid = request.cookies.get('uid', None)
-    return Response('''
-    protected home page<br />
-    <a href="/logout">logout</a>
-    ''')
+    if(request.method == "GET"):
+        print("GET ~~~")
+        return render_template("home.html", user=current_user.name, orders=None)
+    
+    if(request.method == "POST"):
+        print("POST ~~~")
+        token = request.cookies.get(current_user.name + '_token', None)
+        if(token == None):
+            return Response(">>> Failed to get token from cookie")
+        print("access_token:")
+        print(token)
+        
+        url = 'http://127.0.0.1:8008/orders/' + current_user.name
+        headers = {'Content-Type': 'application/x-www-form-urlencoded'}
+        responseFromAPI = requests.post(url=url, headers=headers, cookies=request.cookies)
+        orders = json.loads(responseFromAPI.content)
+        
+        return render_template("home.html", user=current_user.name, orders=orders)
+
 
 # ログインパス
 @app.route('/login', methods=["GET", "POST"])
@@ -75,6 +94,11 @@ def test():
             
             tokens = json.loads(responseFromAPI.text)  # 'access_token', 'refresh_token', 'token_type'
             login_user(users.get(user_name))
+            print("access_token:")
+            print(tokens["access_token"])
+            print("refresh_token:")
+            print(tokens["refresh_token"])
+
             
             response = make_response(redirect('/home'))
             max_age = 60 * 60 * 24 # 24h
@@ -94,6 +118,7 @@ def test():
             flash("認証失敗しました", "failed")
             return render_template("login.html")
 
+
 # ログアウトパス
 @app.route('/logout')
 @login_required
@@ -102,6 +127,7 @@ def logout():
     response.delete_cookie(current_user.name + '_token')
     logout_user()
     return response
+
 
 if __name__ == '__main__':
     import ssl
