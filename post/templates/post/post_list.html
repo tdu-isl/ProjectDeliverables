@@ -26,10 +26,10 @@
                     <p class="card-text">{{ post.content }}</p>
                 </div>
                 <a href="{{ post.image.url }}" data-toggle="lightbox">
-                    <img src="{{ post.image.url }}" class="img-fluid mb-3 d-block">
+                    <img src="{{ post.image.url }}" class="img-fluid mb-3">
                 </a>
                 <div class="card-footer text-muted">
-                    {{ post.created_at }}
+                    <a href="{% url 'post:detail' post.pk %}">{{ post.created_at }}</a>
                 </div>
             </div>
         </div>

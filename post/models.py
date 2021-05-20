@@ -18,3 +18,9 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('post:home')
+
+
+class Reply(models.Model):
+    text = models.TextField()
+    target = models.ForeignKey(Post, on_delete=models.CASCADE)
+    account = models.ForeignKey('accounts.User', on_delete=models.CASCADE)

@@ -1,0 +1,42 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block title %}詳細{% endblock %}
+{% block head %}
+<link href="{% static 'css/posts.css' %}" rel="stylesheet">
+{% endblock %}
+{% load cloudinary %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="card mx-auto" style="max-width: 400px;">
+        <h5 class="card-header">Poster: <a
+                href="{% url 'accounts:profile' post.account.username %}">{{ post.account }}</a></h5>
+        <div class="card-body">
+            <p class="card-text">{{ post.content }}</p>
+        </div>
+        <a href="{{ post.image.url }}" data-toggle="lightbox">
+            <img src="{{ post.image.url }}" class="img-fluid mb-3 d-block">
+        </a>
+        <div class="card-body">
+            <form action="{% url 'post:create_reply' post.pk %}" method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit">送信</button>
+            </form>
+        </div>
+        <ul class="list-group list-group-flush">
+            {% for reply in replies %}
+            <li class="list-group-item">
+                <a href="{% url 'accounts:profile' reply.account.username %}">{{ reply.account }}</a>
+                {{ reply.text }}
+            </li>
+            {% endfor %}
+        </ul>
+        <div class="card-footer text-muted">
+            {{ post.created_at }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

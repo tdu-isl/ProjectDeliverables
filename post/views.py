@@ -1,9 +1,10 @@
-from post.forms import PostCreateForm
+from post.forms import PostCreateForm, ReplyCreateForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views import generic
+from django.views.decorators.http import require_POST
 from django.urls import reverse_lazy
-from .models import Post
+from .models import Post, Reply
 
 
 class IndexView(generic.ListView):
@@ -26,6 +27,32 @@ class CreateView(LoginRequiredMixin, generic.edit.CreateView):
     def form_valid(self, form):
         form.instance.account = self.request.user
         return super().form_valid(form)
+
+
+def show_detail(request, pk):
+    context = {
+        'post': Post.objects.get(pk=pk),
+        'replies': Reply.objects.filter(target=pk),
+        'form': ReplyCreateForm(),
+    }
+    return render(request, 'post/post_detail.html', context)
+
+
+@require_POST
+def create_reply(request, pk):
+    form = ReplyCreateForm(request.POST)
+    if form.is_valid():
+        reply = form.save(commit=False)
+        reply.target = get_object_or_404(Post, pk=pk)
+        reply.account = request.user
+        reply.save()
+        return redirect('post:detail', pk=pk)
+
+    context = {
+        'post': Post.objects.get(pk=pk),
+        'form': form,
+    }
+    return render(request, 'post/post_detail.html', context)
 
 
 def show_top(request):
