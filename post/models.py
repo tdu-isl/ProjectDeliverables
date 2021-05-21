@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.core import validators
 from cloudinary.models import CloudinaryField
 
 
@@ -7,6 +8,13 @@ class Post(models.Model):
     content = models.TextField()
     image = models.ImageField(upload_to='images/')
     created_at = models.DateTimeField(auto_now_add=True)
+    like = models.IntegerField(
+        blank=True,
+        null=True,
+        default=0,
+        validators=[validators.MinValueValidator(0),
+                    validators.MaxValueValidator(10000)]
+    )
 
     account = models.ForeignKey(
         'accounts.User',

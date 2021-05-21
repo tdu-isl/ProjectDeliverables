@@ -57,3 +57,11 @@ def create_reply(request, pk):
 
 def show_top(request):
     return redirect('post:home')
+
+
+def plus_post_like(request, pk):
+    post = Post.objects.get(pk=pk)
+    post.like += 1
+    post.save()
+
+    return redirect("post:home")
