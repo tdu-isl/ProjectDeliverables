@@ -137,12 +137,15 @@ def you_res(word):
         return pt2sec(resVideoInfoAPI["items"][0]["contentDetails"]["duration"])
 
     def pt2sec(pt_time):
-        pttn_time = re.compile(r'PT(\d+H)?(\d+M)?(\d+S)?')
-        keys = ['hours', 'minutes', 'seconds']
-        m = pttn_time.search(pt_time)
-        kwargs = {k: 0 if v is None else int(v[:-1])
-                  for k, v in zip(keys, m.groups())}
-        sec = int(timedelta(**kwargs).total_seconds())
+        if (pt_time == 'P0D'):
+            sec = 0
+        else:
+            pttn_time = re.compile(r'PT(\d+H)?(\d+M)?(\d+S)?')
+            keys = ['hours', 'minutes', 'seconds']
+            m = pttn_time.search(pt_time)
+            kwargs = {k: 0 if v is None else int(v[:-1])
+                      for k, v in zip(keys, m.groups())}
+            sec = int(timedelta(**kwargs).total_seconds())
         return sec
 
     for i in range(len(res["items"])):
