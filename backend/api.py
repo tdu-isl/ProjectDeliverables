@@ -49,12 +49,15 @@ async def read_users_me(current_user: User = Depends(auth.get_current_user)):
 async def get_orders(user_name: str, request: Request):
     # トークン取得
     token = request.cookies.get(user_name + "_token")
-    print("get token: " + str(token))
     # user id取得
     user_id = auth.get_current_user_id(token)
-    print("get user id: " + str(user_id))
     # orders辞書取得
     user_orders = orders.get_orders(user_id)
+    print("\n========== Debug ==========")
+    print("APIサーバに送られてきたトークン: ")
+    print(str(token))
+    print("デコードしたトークンから、ユーザ名を抽出し、DBからユーザIDを入手: ")
+    print(str(user_id))
     return user_orders
 
 

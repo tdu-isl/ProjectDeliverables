@@ -22,17 +22,24 @@ class User(Model):
 
 
 def authenticate(name: str, password: str):
+    print("\n========== Debug ==========")
+    print("認証開始")
+    print("user name = " + name + ", password = " + password)
     user = User.get(name=name)
     if user.password != password:
         raise HTTPException(status_code=401, detail='パスワード不一致')
+    print("認証できました")
     return user
 
 
 def create_tokens(user_id: int):
+    print("トークンを生成しています...")
+    sss = 30
+    print("有効期間を" + str(sss) + "秒間に設定しています")
     # ペイロード作成
     access_payload = {
         'token_type': 'access_token',
-        'exp': datetime.utcnow() + timedelta(minutes=1),
+        'exp': datetime.utcnow() + timedelta(seconds=sss),
         'user_id': user_id,
     }
     refresh_payload = {
@@ -41,12 +48,17 @@ def create_tokens(user_id: int):
         'user_id': user_id,
     }
 
-    # トークン作成（本来は'SECRET_KEY123'はもっと複雑にする）
+    # トークン作成
     access_token = jwt.encode(access_payload, 'SECRET_KEY123', algorithm='HS256')
     refresh_token = jwt.encode(refresh_payload, 'SECRET_KEY123', algorithm='HS256')
 
     # DBにリフレッシュトークンを保存
     User.update(refresh_token=refresh_token).where(User.id == user_id).execute()
+
+    print("   生成した accessトークン：")
+    print(access_token)
+    print("   生成した refreshトークン：")
+    print(refresh_token)
 
     return {'access_token': access_token, 'refresh_token': refresh_token, 'token_type': 'bearer'}
 

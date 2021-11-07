@@ -48,22 +48,33 @@ def home():
 @app.route('/home', methods=["GET", "POST"])
 @login_required
 def protected():
+    print("\n========== Debug ==========")
     if(request.method == "GET"):
-        print("GET ~~~")
+        print("GETリクエストを検知しました")
+        print("path: " + request.url)
         return render_template("home.html", user=current_user.name, orders=None)
     
     if(request.method == "POST"):
-        print("POST ~~~")
+        print("POSTリクエストを検知しました")
+        print("ブラウザのCookieでトークンを探します。key = " + current_user.name + "_token")
         token = request.cookies.get(current_user.name + '_token', None)
         if(token == None):
+            print("トークンが見つかりませんでした")
             return Response(">>> Failed to get token from cookie")
         print("access_token:")
         print(token)
+        print("トークンを利用して、注文履歴をAPIサーバから入手します")
         
         url = 'http://127.0.0.1:8008/orders/' + current_user.name
         headers = {'Content-Type': 'application/x-www-form-urlencoded'}
         responseFromAPI = requests.post(url=url, headers=headers, cookies=request.cookies)
+        if responseFromAPI.status_code != 200:
+            print("トークンが無効です")
+            return render_template("home.html", user=current_user.name, orders=None)
+        
         orders = json.loads(responseFromAPI.content)
+        print("注文履歴は：")
+        print(orders)
         
         return render_template("home.html", user=current_user.name, orders=orders)
 
@@ -75,8 +86,11 @@ def login():
         return render_template("login.html")
     
     if(request.method == "POST"):
+        print("\n========== Debug ==========")
         user_name = request.form.get('username')
         user_pass = request.form.get('password')
+        print("入力されたユーザ名: " + user_name + ", パスワード: " + user_pass)
+        print("APIサーバにトークンを発行してもらいます...")
         url = 'http://127.0.0.1:8008/token'
         params = {
             'username': user_name,
@@ -87,16 +101,15 @@ def login():
         responseFromAPI = requests.post(url=url, data=params, headers=headers)
         
         if(responseFromAPI.status_code == 200):
-            
+            print("認証成功しました")
             if user_name not in users:
-                print('add user: ' + user_name)
                 users[user_name] = User(len(users)+1, user_name, user_pass)
             
             tokens = json.loads(responseFromAPI.text)  # 'access_token', 'refresh_token', 'token_type'
             login_user(users.get(user_name))
-            print("access_token:")
+            print("   access_token:")
             print(tokens["access_token"])
-            print("refresh_token:")
+            print("   refresh_token:")
             print(tokens["refresh_token"])
 
             
@@ -112,9 +125,11 @@ def login():
                 secure=None,
                 httponly=False
             )
+            print("アクセストークンを「" + user_name + "_token」というキーでCookieに保存します")
             
             return response
         else:
+            print("認証失敗しました")
             flash("認証失敗しました", "failed")
             return render_template("login.html")
 
@@ -124,6 +139,7 @@ def login():
 @login_required
 def logout():
     response = make_response(redirect('/login'))
+    print("ログアウトされたため、Cookieから「" + current_user.name + "_token」を削除します")
     response.delete_cookie(current_user.name + '_token')
     logout_user()
     return response
