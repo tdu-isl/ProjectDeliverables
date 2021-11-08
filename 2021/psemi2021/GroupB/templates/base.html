@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cross Search - P-Semi</title>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+          rel="stylesheet"/>
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" rel="stylesheet"/>
+
+
+    <style>
+
+        /* mdb rewrite*/
+        .container{
+            max-width: 1920px!important;
+        }
+
+        #fadeContent::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff; /* 背景カラー */
+            z-index: 9999; /* 一番手前に */
+            pointer-events: none; /* 他の要素にアクセス可能にするためにポインターイベントは無効に */
+            opacity: 0; /* 初期値 : 透過状態 */
+            -webkit-transition: opacity .8s ease; /* アニメーション時間は 0.8秒 */
+            transition: opacity .8s ease;
+        }
+
+        #fadeContent.content::after {
+            opacity: 1;
+        }
+
+
+        /* select starting stylings ------------------------------*/
+        .select {
+            font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            position: relative;
+            width: 350px;
+        }
+
+        .select-text {
+            position: relative;
+            font-family: inherit;
+            background-color: transparent;
+            width: 350px;
+            padding: 10px 10px 10px 0;
+            font-size: 18px;
+            border-radius: 0;
+            border: none;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        }
+
+        /* Remove focus */
+        .select-text:focus {
+            outline: none;
+            border-bottom: 1px solid rgba(0, 0, 0, 0);
+        }
+
+        /* Use custom arrow */
+        .select .select-text {
+            appearance: none;
+            -webkit-appearance: none
+        }
+
+        .select:after {
+            position: absolute;
+            top: 18px;
+            right: 10px;
+            /* Styling the down arrow */
+            width: 0;
+            height: 0;
+            padding: 0;
+            content: '';
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid rgba(0, 0, 0, 0.12);
+            pointer-events: none;
+        }
+
+
+        /* LABEL ======================================= */
+        .select-label {
+            color: rgba(0, 0, 0, 0.26);
+            font-size: 18px;
+            font-weight: normal;
+            position: absolute;
+            pointer-events: none;
+            left: 0;
+            top: 10px;
+            transition: 0.2s ease all;
+        }
+
+        /* active state */
+        .select-text:focus ~ .select-label, .select-text:valid ~ .select-label {
+            color: #2F80ED;
+            top: -20px;
+            transition: 0.2s ease all;
+            font-size: 14px;
+        }
+
+        /* BOTTOM BARS ================================= */
+        .select-bar {
+            position: relative;
+            display: block;
+            width: 350px;
+        }
+
+        .select-bar:before, .select-bar:after {
+            content: '';
+            height: 2px;
+            width: 0;
+            bottom: 1px;
+            position: absolute;
+            background: #2F80ED;
+            transition: 0.2s ease all;
+        }
+
+        .select-bar:before {
+            left: 50%;
+        }
+
+        .select-bar:after {
+            right: 50%;
+        }
+
+        /* active state */
+        .select-text:focus ~ .select-bar:before, .select-text:focus ~ .select-bar:after {
+            width: 50%;
+        }
+
+        /* HIGHLIGHTER ================================== */
+        .select-highlight {
+            position: absolute;
+            height: 60%;
+            width: 100px;
+            top: 25%;
+            left: 0;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+
+    </style>
+    {% block head %}{% endblock %}
+</head>
+<body>
+<header>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Cross Search</a>
+            <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-mdb-toggle="collapse"
+                    data-mdb-target="#navbar"
+                    aria-controls="navbar"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+            >
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="./">Home</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar -->
+
+
+</header>
+<div class="container">
+    {% block body %}{% endblock %}
+</div>
+<footer class="bg-light text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+        2020-2021 P-Semi Group B
+    </div>
+    <!-- Copyright -->
+</footer>
+<!-- MDB -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"></script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" crossorigin="anonymous"></script>
+<script>
+
+
+    var fadeTime = 800,
+        fadeSelector = 'content';
+    $(function () {
+        $('a:not([href^="#"]):not([target])').on('click', function (e) {
+            e.preventDefault();
+            url = $(this).attr('href');
+            if (url !== '') {
+                $('div').addClass(fadeSelector);
+                setTimeout(function () {
+                    window.location = url;
+                }, fadeTime);
+            }
+            return false;
+        });
+
+    });
+    $(window).on('load', function () {
+        $('div').removeClass(fadeSelector);
+    });
+</script>
+</body>
+</html>
