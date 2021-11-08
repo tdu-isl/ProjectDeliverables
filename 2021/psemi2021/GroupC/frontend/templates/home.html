@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home</title>
+<style type="text/css">
+	
+</style>
+</head>
+<body>
+
+    <!--
+        parameters:
+        - (string)  user: user's name
+        - (dict)    orders: a dict containing order quantity
+    -->
+
+    <div>
+        <h2>{{ user }}</h2>
+        <form method="get" action="logout">
+            <button type="submit" name="action" value="logout">ログアウト</button>
+        </form>
+        <hr>
+
+        <form method="post">
+            <button type="submit" name="action" value="update">注文リストを更新する</button>
+        </form>
+        
+        {% if orders %}
+        <dl>
+            {% for product,count in orders.items() %}
+            <dt>{{ product }}</dt>   <dd>{{ count }}</dd>
+            {% endfor %}
+        </dl>
+        {% endif %}
+    </div>
+
+
+
+
+</body>
+</html>                                		                            

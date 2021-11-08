@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+fastapi = "*"
+uvicorn = "*"
+flask = "*"
+flask-login = "*"
+requests = "*"
+peewee = "*"
+python-jose = "*"
+python-multipart = "*"
+flash = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
+
+[scripts]
+fe = "python frontend/main.py"
+be = "python backend/api.py"

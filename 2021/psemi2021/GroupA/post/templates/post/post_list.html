@@ -1,0 +1,47 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block title %}ポスト一覧{% endblock %}
+{% block head %}
+<link href="{% static 'css/posts.css' %}" rel="stylesheet">
+{% endblock %}
+{% load cloudinary %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <h2>投稿一覧</h2>
+    {% if user.is_authenticated %}
+    <div class="post-create">
+        <a href='{% url "post:create" %}' class="btn btn-secondary mb-3">新しいポストを投稿</a>
+    </div>
+    {% endif %}
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+
+        {% for post in object_list %}
+        <div class="col mb-3">
+            <div class="card">
+                <h5 class="card-header">Poster: <a
+                        href="{% url 'accounts:profile' post.account.username %}">{{ post.account }}</a></h5>
+                <div class="card-body">
+                    <p class="card-text">{{ post.content }}</p>
+                </div>
+                <a href="{{ post.image.url }}" data-toggle="lightbox">
+                    <img src="{{ post.image.url }}" class="img-fluid mb-3">
+                </a>
+                <div class="card-footer text-muted">
+                    <a href="{% url 'post:detail' post.pk %}">{{ post.created_at }}</a>
+                    <a class="float-right" href="{% url 'post:like' post.pk %}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path
+                                d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z" />
+                        </svg>
+                        {{ post.like }}
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
