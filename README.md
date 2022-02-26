@@ -4,14 +4,46 @@
 
 このリポジトリは、P講習などの成果物を管理するため作られたものです。  
 個人またはチームで作ったものを、コピーという形でここに取り入れます。
+- 管理リポジトリ: このリポジトリ`ProjectDeliverables`を指します
+- 成果物リポジトリ: 管理リポジトリに統合するリポジトリのこと
 
-## リポジトリの統合のやり方
+統合作業をする前に、成果物リポジトリのURLを取得してください。
+成果物リポジトリは、publicになっているか、自分がアクセスできるようにしてください。
+成果物リポジトリのコミット履歴はそのまま残ります。
 
-このリポジトリを一度ローカルにクローンしてから作業を進めます。  
-また、統合元のリポジトリは、URLのみ取得すればよく、クローン＆forkなどの操作は必要ないです。  
-なお、統合元のリポジトリのコミット履歴はそのまま残ります。
+## リポジトリ統合のやり方(説明なし)
+
+ブランチ名`add-sub-repo`、リモートリポジトリの別名`sub-repo`は適宜変更してよい
+```shell
+cd 管理リポジトリProjectDeliverablesのパス
+git pull
+
+git switch -c add-sub-repo
+git remote add sub-repo 成果物リポジトリのURL
+git fetch sub-repo
+git merge -s ours --no-commit --allow-unrelated-histories sub-repo/main
+mkdir -p 成果物を置くディレクトリ
+git read-tree --prefix=sub-dir/ -u sub-repo/main
+git commit -m "コミットメッセージ"
+git remote rm sub-repo
+
+git remote -v
+git branch -a
+git push -u origin add-sub-repo
+
+問題なくできたら、Githubでadd-sub-repoブランチからPull Requestを作成して、mainブランチへマージしてください
+
+最後に、作業用のブランチを削除
+git branch -D add-sub-repo              # ローカルの方を強制削除
+git push origin --delete add-sub-repo   # リモートの方を削除
+```
+
+## リポジトリ統合のやり方(説明つき)
 
 ```shell
+cd 管理リポジトリProjectDeliverablesのパス
+git pull
+
 git switch -c 作業用ブランチ名
     # 「git checkout -b　ブランチ名」もOKです
     # 例として、作業用ブランチ名を「add-sub-repo」とします
@@ -50,12 +82,27 @@ git branch -a
 git push -u origin add-sub-repo
 # ブランチ名を適宜置き換えましょう
 # 最後に作業用ブランチを、mainブランチにマージします（Pull Request利用）
-# Githubのリポジトリページで行います
+# Githubのリポジトリページで行います。マージ完了時に作業用ブランチも削除してください。
 
+最後に、作業用のブランチを削除
+git branch -D add-sub-repo              # ローカルの方を強制削除
+git push origin --delete add-sub-repo   # リモートの方を削除
+
+########## ########## ########## ########## ########## ##########
+# (Pull Request利用することがおすすめ)
 # PRを利用せずに、ローカルのmainブランチにmergeしてから、リモートのmainブランチにpushしてもOKです。
 # git switch main または git checkout main
 # git merge add-sub-repo
 # git push -u origin main
+```
+
+### スクリプトを利用
+
+作業を簡単にするために、Linux/MacOS用のShellScriptを作りました。  
+使い方は以下の通りです。指示に従って入力すればOKです。
+```shell
+cd 管理リポジトリProjectDeliverablesのパス
+./merge_sub_repo.sh
 ```
 
 ### その他のやり方
