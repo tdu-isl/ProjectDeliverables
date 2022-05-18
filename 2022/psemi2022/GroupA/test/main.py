@@ -24,14 +24,14 @@ def index():
     return render_template("index.html", sitekey=sitekey, secretkey=secretkey)
 
 
-@app.route("/test")
-def _index():
-    with open(".sitekey", mode="r") as f:
-        sitekey = f.read()
-    with open(".secretkey", mode="r") as f:
-        secretkey = f.read()
+# @app.route("/test")
+# def _index():
+#     with open(".sitekey", mode="r") as f:
+#         sitekey = f.read()
+#     with open(".secretkey", mode="r") as f:
+#         secretkey = f.read()
 
-    return render_template("_index.html", sitekey=sitekey, secretkey=secretkey)
+#     return render_template("_index.html", sitekey=sitekey, secretkey=secretkey)
 
 
 if __name__ == "__main__":
