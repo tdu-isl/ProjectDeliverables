@@ -1,0 +1,15 @@
+.img_ninsyou {
+    width: 25%;
+    height: 25%;
+}
+
+.yoko {
+    display: flex;
+    justify-content: center;
+}
+
+.right {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 75px;
+}
