@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, intial-scale=1">
     <title>p-semi 最終課題 C班</title>
-    <link rel="stylesheet" href="static/css/top.css">
+    <link rel="stylesheet" href="/static/css/top.css">
+    <link rel="icon" href="/static/image/favicon.png">
     <script>
         (function (d) {
             var config = {
@@ -29,23 +30,28 @@
 </head>
 
 <body>
+    <div id="splash">
+        <div id="splash-logo"><img src="/static/image/lab_logo.png" alt="" class="fadeUp"></div>
+        <!--/splash-->
+    </div>
+
     <nav class="navbar navbar-expand-lg" style="background-color:rgba(58, 58, 58, 0.836);" fixed-top>
         <!-- .container-fluid -->
         <div class="container-fluid">
             <!-- ロゴ-->
-            <a class="navbar-brand" href="">
+            <a class="navbar-brand">
                 <img src="static/image/nav_logo.png" alt="ブランド" width="300rem" class="d-inline-block align-top">
             </a>
             <div class="collapse navbar-collapse justify-content-end" id="Navber">
                 <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="">Member</a>
+                        <a class="nav-link" href="">Top</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/member">Member</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="https://tdu-isl.github.io/home/">ISL</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Links</a>
                     </li>
             </div>
             <!-- /.navbar-->
@@ -53,34 +59,41 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <main>
-        <div class="container-main">
-            <div class="text-center">
-                攻撃を疑似体験
+
+    <div id="container-top">
+        <main>
+            <div class="container-main">
+                <div class="text-center">
+                    攻撃を疑似体験
+                </div>
             </div>
-        </div>
-        <div class="container-text">
-            <div class="text-center">
-                年々増加傾向にある<br>フィッシングサイトによる詐欺やパスワード搾取<br>その脅威はすでに身近なところに存在します
+            <div class="container-text">
+                <div class="text-center">
+                    年々増加傾向にある<br><b><a href="/explain">フィッシングサイト</a></b>による詐欺やパスワード搾取<br>その脅威はすでに身近なところに存在します
+                </div>
             </div>
-        </div>
-        <div class="container-text2">
-            <div class="text-center">
-                他人事だと思っているあなたも<br><span style="font-size:27px;">標的の一人かもしれません
+            <div class="container-text2">
+                <div class="text-center">
+                    他人事だと思っているあなたも<br><span style="font-size:27px; color: rgba(197, 22, 22, 0.836);">標的の一人かもしれません
+                </div>
             </div>
-        </div>
-        <div class="container-text3">
-            <div class="text-center">
-                実際に被害にあう前に<br>疑似体験を行う事で<br>被害にあわないように対策を行いましょう
+            <div class="container-text3">
+                <div class="text-center">
+                    実際に被害にあう前に<br>疑似体験を行う事で<br>被害にあわないように対策を行いましょう
+                </div>
             </div>
-        </div>
-        <div class="container-button">
-            <div class="text-center">
-                <b>フィッシング詐欺体験</b><br>
-                <a class="btn btn-outline-secondary btn-lg" href="/shindan" type="button">Try it</a>
+            <div class="container-button">
+                <div class="text-center">
+                    <b>フィッシング詐欺体験</b><br>
+                    <a class="btn btn-outline-secondary btn-lg" href="/shindan" type="button" target="_blank">Try it</a>
+                </div>
             </div>
-        </div>
-    </main>
+        </main>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="/static/js/top.js"></script>
 </body>
 
 </html>

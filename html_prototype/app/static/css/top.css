@@ -50,8 +50,10 @@ body {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    background: url(../image/top_background.png) center center / cover no-repeat fixed;
+    background: url(../image/background.png) center center / cover no-repeat fixed;
 }
+
+
 
 hr {
     margin: 1rem 0;
@@ -200,12 +202,12 @@ sup {
 }
 
 a {
-    color: #000000;
-    text-decoration: none;
+    color: #ffffff;
+    
 }
 
 a:hover {
-    color: #000000;
+    color: #ffffff;
     opacity: 0.8;
 }
 
@@ -12080,5 +12082,95 @@ body>.container {
         display: none !important;
     }
 }
+
+/*========= ローディング画面のためのCSS ===============*/
+#splash {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgb(89, 90, 110);
+    z-index: 9999999;
+    text-align: center;
+    color: #fff;
+    font-size: 30px;
+}
+
+#splash-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/* fadeUpをするアイコンの動き */
+.fadeUp {
+    animation-name: fadeUpAnime;
+    animation-duration: 2.0s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+
+@keyframes fadeUpAnime {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*========= 画面遷移のためのCSS ===============*/
+
+/*画面遷移アニメーション*/
+.splashbg {
+    display: none;
+}
+
+/*bodyにappearクラスがついたら出現*/
+body.appear .splashbg {
+    display: block;
+    content: "";
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    transform: scaleY(0);
+    background-color: rgba(201, 201, 201, 0.836);
+    ;
+    /*伸びる背景色の設定*/
+    animation-name: PageAnime;
+    animation-duration: 1.2s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes PageAnime {
+    0% {
+        transform-origin: top;
+        transform: scaleY(0);
+    }
+
+    50% {
+        transform-origin: top;
+        transform: scaleY(1);
+    }
+
+    50.001% {
+        transform-origin: bottom;
+    }
+
+    100% {
+        transform-origin: bottom;
+        transform: scaleY(0);
+    }
+}
+
+
 
 /*# sourceMappingURL=bootstrap.css.map */

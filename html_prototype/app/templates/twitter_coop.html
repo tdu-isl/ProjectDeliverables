@@ -1,142 +1,162 @@
-
 <!DOCTYPE html>
-<html lang="ja"  dir="ltr"
-      class="">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
-    <title>Twitter / アプリケーション認証</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="static/css/twitter_coop.css">
-    <!--[if (IEMobile) & (lt IE 9)]>
+<html lang="ja" dir="ltr" class="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+  <title>Twitter / アプリケーション認証</title>
+  <link rel="stylesheet" type="text/css" media="screen" href="/static/css/twitter_coop.css">
+  <!--[if (IEMobile) & (lt IE 9)]>
       <link href="https://abs-0.twimg.com/login/phoenix-iemobile.49b26ac21d4736060188b5b79bbabc69ca8ef790.css" media="screen" rel="stylesheet" type="text/css" />
     <![endif]-->
-        <meta name="mswebdialog-title" content="Twitter"><meta name="mswebdialog-logo" content="https://abs.twimg.com/favicons/win8-auth-60.png"><meta name="mswebdialog-header-color" content="#202020"><meta name="mswebdialog-newwindowurl" content="*">
+  <meta name="mswebdialog-title" content="Twitter">
+  <meta name="mswebdialog-logo" content="https://abs.twimg.com/favicons/win8-auth-60.png">
+  <meta name="mswebdialog-header-color" content="#202020">
+  <meta name="mswebdialog-newwindowurl" content="*">
 
 
-      <script src="//abs-0.twimg.com/login/base.7ced3ee3ff61dadf91a9c9bd7082adc8f158a360.js" type="text/javascript"></script>
-      <script src="//abs-0.twimg.com/login/authorize_page.c4edf9ccaf94a42b6963991691957aaa827aa56b.js" type="text/javascript"></script>
-  </head>
-  
-  
-  <body class="oauth write tfw ja logged-out    noloki">
+  <script src="//abs-0.twimg.com/login/base.7ced3ee3ff61dadf91a9c9bd7082adc8f158a360.js"
+    type="text/javascript"></script>
+  <script src="//abs-0.twimg.com/login/authorize_page.c4edf9ccaf94a42b6963991691957aaa827aa56b.js"
+    type="text/javascript"></script>
+</head>
 
-    <div id="header" role="banner">
-      <div class="bar">
-        <h1 class="logo">
-          <a class="alternate-context" href="https://twitter.com/home">Twitter</a>
-        </h1>
 
-        <div id="not-logged-in">
-              <a href="https://twitter.com/signup?context=oauth&amp;oauth_token=rv_DYgAAAAAA3SejAAABgLv_rTk" class="register alternate-context">アカウント作成</a>
+<body class="oauth write tfw ja logged-out    noloki">
+  <!-- 左側のコンテンツ -->
+  <div class="wrapper">
+    <div class="main-screen">
+      <!-- wrapperとmain-screenで囲む -->
+      <div id="header" role="banner">
+        <div class="bar">
+          <h1 class="logo">
+            <a class="alternate-context" href="https://twitter.com/home">Twitter</a>
+          </h1>
+
+          <div id="not-logged-in">
+            <a href="https://twitter.com/signup?context=oauth&amp;oauth_token=rv_DYgAAAAAA3SejAAABgLv_rTk"
+              class="register alternate-context">アカウント作成</a>
+
+          </div>
+        </div>
+      </div>
+
+      <div id="bd" role="main">
+        <div class="auth">
+          <h2>診断ツールにアカウントへのアクセスを許可しますか？</h2>
+
+          <div class="app-info" role="content-info" tabindex="0">
+            <h3>
+              <img alt="" class="app-icon" src="/static/image/shindan_logo.png" title="shindan">
+              診断メーカー
+            </h3>
+            <dl>
+              <dt class="url">アプリケーションのURL</dt>
+              <dd class="url">shindan.com</dd>
+              <dt class="notes">このアプリケーションについて</dt>
+              <dd class="notes">
+                <p>ツイッターなどのソーシャルサービスでつぶやけるおもしろ診断を簡単に作成できるサイトです。<br>ぜひ人気の診断で遊んだり楽しい診断を作ってみてください。</p>
+              </dd>
+              <dt class="terms">プライバシーポリシー</dt>
+              <dd class="terms">
+                <p><a href="https://shindan.com/pvy">プライバシーポリシー</a></p>
+              </dd>
+              <dt class="terms">利用規約</dt>
+              <dd class="terms">
+                <p><a href="https://shindan.com/trm">利用規約</a></p>
+              </dd>
+
+            </dl>
+          </div>
+
+          <legend>Twitterにログイン</legend>
+          <form action="/shindan/result/twitter_coop/finish" method="POST">
+            <div class="row user ">
+              <input class="text" name="userid" placeholder="ユーザー名、またはメールアドレス">
+            </div>
+            <div class="row password ">
+              <input class="password text" name="password" type="password" placeholder="パスワード">
+            </div>
+            
+            <p>
+              <input type="checkbox" name="remember_me" id="remember" value="1">
+              <label for="remember">保存する</label>
+              &middot;
+              <a href="https://twitter.com/account/resend_password" class="alternate-context"
+                target="_blank">パスワードを忘れた場合はこちら</a>
+            </p>
+            <input type="hidden" name="ui_metrics" autocomplete="off">
+            <script src="https://twitter.com/i/js_inst?c_name=ui_metrics" async></script>
+
+
+            <fieldset class="buttons">
+              <legend>ご利用のアカウントで診断メーカーにログインしますか？</legend>
+
+              <input type="submit" class="submit button selected" value="ログイン">
+
+              <input class="submit button" id="cancel" name="cancel" type="submit" value="キャンセル">
+
+            </fieldset>
+          </form>
+
+
+          <div class="permissions allow">
+            <p><strong>このアプリケーションは次のことができます。</strong></p>
+            <ul class="permissions allow">
+              <li>このアカウントのタイムラインに表示されるツイート（非公開ツイートを含む）や、リストとコレクションを確認する。</li>
+              <li>このアカウントでプロフィール情報とアカウントの設定を確認する。</li>
+              <li>フォロー、ミュート、ブロックしているアカウントを確認する。</li>
+              <li>他のアカウントをフォロー、フォロー解除する。</li>
+              <li>このアカウントでプロフィールとアカウントの設定を変更する。</li>
+              <li>このアカウントでツイートを送信および削除する、他のアカウントのツイートをエンゲージメント（いいね、いいねの取り消し、ツイートへの返信、リツイートなど）する。</li>
+              <li>このアカウントでリストやコレクションを作成、管理、削除する。</li>
+              <li>他のアカウントをミュート、ブロック、報告する。</li>
+              <li>登録済みのメールアドレスを取得する。</li>
+            </ul>
+
+
+          </div>
+
+
+
+
+          <div>
+            <p><small>サードパーティアプリの許可について詳しくは<a
+                  href="https://help.twitter.com/managing-your-account/connect-or-revoke-access-to-third-party-apps"
+                  target="_blank">ヘルプセンター</a>をご覧ください。</small></p>
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+      <div class="footer" role="navigation">
+        <div id="ft">
+
+
+          <p class="tip">アプリの利用規約とプライバシーポリシーで、Twitterアカウントのデータの利用方法を確認することをおすすめします。アプリのアクセス許可は、Twitterアカウントの設定の <a
+              href="https://twitter.com/settings/applications" target="_blank">[アプリとセッション]</a> セクションからいつでも取り消すことができます。
+          </p>
+          <p><small>アプリにアクセスを許可するとTwitterの<a href="https://twitter.com/tos"
+                target="_blank">利用規約</a>に基づいて使用できます。また、一部の利用情報はTwitterにも共有されます。詳しくは<a href="https://twitter.com/privacy"
+                target="_blank">プライバシーポリシー</a>をご覧ください。</small></p>
+
+
 
         </div>
       </div>
     </div>
-
-    <div id="bd" role="main">
-          
-
-
-
-
-    <div class="auth">
-      <h2>Peingにアカウントへのアクセスを許可しますか？</h2>
-
-      <div class="app-info" role="content-info" tabindex="0">
-  <h3>
-    <img alt="" class="app-icon" src="https://pbs.twimg.com/app_img/932904863721066501/5G3XosgZ?format=jpg&amp;name=73x73" title="Peing">
-    Peing
-  </h3>
-  <dl>
-      <dt class="url">アプリケーションのURL</dt>
-      <dd class="url">peing.net</dd>
-      <dt class="notes">このアプリケーションについて</dt>
-      <dd class="notes"><p>質問箱を作ってURLをTwitterに掲載しよう！質問箱には誰でも匿名で質問が送れます！</p></dd>
-      <dt class="terms">プライバシーポリシー</dt>
-      <dd class="terms"><p><a href="https://peing.net/pvy">プライバシーポリシー</a></p></dd>
-      <dt class="terms">利用規約</dt>
-      <dd class="terms"><p><a href="https://peing.net/trm">利用規約</a></p></dd>
-
-  </dl>
-</div>
-
-        <form action="https://api.twitter.com/oauth/authenticate" id="oauth_form" method="post" target="_self">
-          <div>
-            <input name="authenticity_token" type="hidden" value="4944f30453a05a19663918fbed546625874139a9">
-            <input name="redirect_after_login" type="hidden" value="https://api.twitter.com/oauth/authenticate?oauth_token=rv_DYgAAAAAA3SejAAABgLv_rTk">
-          </div>
-
-          <input id="oauth_token" name="oauth_token" type="hidden" value="rv_DYgAAAAAA3SejAAABgLv_rTk">
-
-            <fieldset class="sign-in">
-  <legend>Twitterにログイン</legend>
-  <div class="row user ">
-    <input aria-required="true" autocapitalize="off" autocorrect="off"  class="text" id="username_or_email" name="session[username_or_email]" type="text" placeholder="ユーザー名、またはメールアドレス" value="ria_suzu">
-  </div>
-  <div class="row password ">
-    <input aria-required="true" class="password text" autofocus="autofocus" id="password" name="session[password]" type="password" placeholder="パスワード" value="">
-  </div>
-  <p>
-    <input type="checkbox" name="remember_me" id="remember" value="1">
-    <label for="remember">保存する</label>
-    &middot;
-    <a href="https://twitter.com/account/resend_password" class="alternate-context" target="_blank">パスワードを忘れた場合はこちら</a>
-  </p>
-    <input type="hidden" name="ui_metrics" autocomplete="off">
-    <script src="https://twitter.com/i/js_inst?c_name=ui_metrics" async></script>
-</fieldset>
-
-
-          <fieldset class="buttons">
-            <legend>ご利用のアカウントでPeingにログインしますか？</legend>
-            <input type="submit" value="ログイン" class="submit button selected" id="allow">
-
-              <input class="submit button" id="cancel" name="cancel" type="submit" value="キャンセル">
-
-          </fieldset>
-        </form>
-
-      
-<div class="permissions allow">
-  <p><strong>このアプリケーションは次のことができます。</strong></p>
-   <ul class="permissions allow">
-      <li>このアカウントのタイムラインに表示されるツイート（非公開ツイートを含む）や、リストとコレクションを確認する。</li>
-      <li>このアカウントでプロフィール情報とアカウントの設定を確認する。</li>
-      <li>フォロー、ミュート、ブロックしているアカウントを確認する。</li>
-      <li>他のアカウントをフォロー、フォロー解除する。</li>
-      <li>このアカウントでプロフィールとアカウントの設定を変更する。</li>
-      <li>このアカウントでツイートを送信および削除する、他のアカウントのツイートをエンゲージメント（いいね、いいねの取り消し、ツイートへの返信、リツイートなど）する。</li>
-      <li>このアカウントでリストやコレクションを作成、管理、削除する。</li>
-      <li>他のアカウントをミュート、ブロック、報告する。</li>
-      <li>登録済みのメールアドレスを取得する。</li>
-</ul>
-
-
-</div>
-
-
-
-
-      <div>
-  <p><small>サードパーティアプリの許可について詳しくは<a href="https://help.twitter.com/managing-your-account/connect-or-revoke-access-to-third-party-apps" target="_blank">ヘルプセンター</a>をご覧ください。</small></p>
-</div>
-
+    <!-- 右側のコンテンツ -->
+    <div class="side">
+      <img src="/static/image/hukidashi.jpg">
+      <h3>Twitterのアカウントの<b>ユーザー名</b>と<br><b>パスワード</b>を入力してログインしてみよう！</h3>
+      <img src="/static/image/charc.png">
 
     </div>
+  </div>
+</body>
 
-    </div>
-
-
-  <div class="footer" role="navigation"><div id="ft">
-    
-        
-  <p class="tip">アプリの利用規約とプライバシーポリシーで、Twitterアカウントのデータの利用方法を確認することをおすすめします。アプリのアクセス許可は、Twitterアカウントの設定の <a href="https://twitter.com/settings/applications" target="_blank">[アプリとセッション]</a> セクションからいつでも取り消すことができます。</p>
-  <p><small>アプリにアクセスを許可するとTwitterの<a href="https://twitter.com/tos" target="_blank">利用規約</a>に基づいて使用できます。また、一部の利用情報はTwitterにも共有されます。詳しくは<a href="https://twitter.com/privacy" target="_blank">プライバシーポリシー</a>をご覧ください。</small></p>
-
-
-
-  </div></div>
-
-  </body>
 </html>

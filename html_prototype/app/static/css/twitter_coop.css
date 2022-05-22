@@ -932,7 +932,7 @@ input.textual, button.textual {
 }
 
 body.oauth {
-    padding-top: 20px
+    padding-top: 0px
 }
 
 .oauth #bd {
@@ -2101,4 +2101,39 @@ table {
 
 td, th {
     padding: 0
+}
+
+.wrapper {
+    overflow: hidden;
+}
+
+.main-screen {
+    float: left;
+    width: 100%;
+    margin-right: -500px;
+    padding-right: 500px;
+    box-sizing: border-box;
+
+}
+
+.side {
+    position: fixed;
+    float: right;
+    right: 0px;
+    width: 500px;
+    height: 100vh;
+    padding-top: 0px;
+    padding-left: 0px;
+    background-color: white;
+    border-color: #5cb6ff;
+    border-style: double;
+    border-width: 10px;
+}
+
+/* 診断ページの1枚目の操作指示のテキスト配置等 */
+.side h3 {
+    position: absolute;
+    color: black;
+    top: 120px;
+    left: 30px;
 }

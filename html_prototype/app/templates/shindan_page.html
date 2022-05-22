@@ -21,7 +21,7 @@
     <link rel="dns-prefetch" href="//mixi.jp">
     <link rel="dns-prefetch" href="//scdn.line-apps.com">
     <!-- CSS -->
-    <link rel="stylesheet" href="static/css/app.css">
+    <link rel="stylesheet" href="/static/css/app.css">
     <!--  -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
@@ -33,7 +33,8 @@
     <link rel="icon" type="image/png"
         href="https://dkhhsjgarvlsj.cloudfront.net/img/favicons/android-chrome-192x192.png">
     <title>あなたを飲み物にしてみたー</title>
-    <meta name="description" content="あなたはどんな飲み物でしょうか。「「I love you」をあなた風に翻訳したー」もどうぞ→http://shindanmaker.com/211384 他の診断もどうぞ→http://shindanmaker.com/author/qen000">
+    <meta name="description"
+        content="あなたはどんな飲み物でしょうか。「「I love you」をあなた風に翻訳したー」もどうぞ→http://shindanmaker.com/211384 他の診断もどうぞ→http://shindanmaker.com/author/qen000">
     <meta name="keywords" content=" 診断, 診断メーカー">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="あなたを飲み物にしてみたー">
@@ -48,7 +49,8 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://shindanmaker.com/181846">
     <meta property="og:site_name" content="診断メーカー">
-    <meta property="og:description" content="あなたはどんな飲み物でしょうか。「「I love you」をあなた風に翻訳したー」もどうぞ→http://shindanmaker.com/211384 他の診断もどうぞ→http://shindanmaker.com/author/qen000">
+    <meta property="og:description"
+        content="あなたはどんな飲み物でしょうか。「「I love you」をあなた風に翻訳したー」もどうぞ→http://shindanmaker.com/211384 他の診断もどうぞ→http://shindanmaker.com/author/qen000">
     <link rel="canonical" href="https://shindanmaker.com/181846">
     <link rel="alternate" href="https://shindanmaker.com/181846" hreflang="ja">
     <link rel="alternate" href="https://en.shindanmaker.com/181846" hreflang="en">
@@ -61,7 +63,7 @@
     <!-- 左側のコンテンツ -->
     <div class="wrapper">
         <div class="main-screen">
-    <!-- wrapperとmain-screenで囲む -->
+            <!-- wrapperとmain-screenで囲む -->
             <div id="head-navbar" autoHide="1" class="container-fluid">
                 <div id="head-navbar-container" class="container px-0">
                     <nav class="navbar navbar-expand pr-0"><a class="navbar-brand mr-1" href="/"><img id="navbar-logo"
@@ -158,8 +160,7 @@
                                         class="a label-user-shindan user-modal-show user-authorLabel-LYPD4MW71G"
                                         data-account_id="LYPD4MW71G"><img
                                             class="label-user-shindan-avatar rounded-circle mr-2 user-avatar-LYPD4MW71G"
-                                            src="static/image/userlogo.png"
-                                            alt="@islisl"><span
+                                            src="/static/image/userlogo.png" alt="@islisl"><span
                                             class="user-screen_name-LYPD4MW71G">@islisl</span></span>
                                 </div>
                                 <div class="ml-auto text-right text-nowrap"><span title="診断人数"
@@ -175,7 +176,7 @@
                                     style="border: 0pt none;">
                                     <div class="creative">
                                         <div class="image-container">
-                                            <img class="image" src="static/image/shindan_ad1.png">
+                                            <img class="image" src="/static/image/shindan_ad1.gif">
                                         </div>
                                     </div>
                                 </div>
@@ -254,13 +255,12 @@
                     <div id="shindanFormBlock" class="px-3 mb-3"><span id="shindanFormTitle"
                             class="h4 d-block text-center font-weight-bold py-3 px-2 mb-0"> 診断したい名前を入れて下さい </span>
                         <div id="shindanFormMain" class="py-3 px-3 text-center">
-                            <form action="/result" autocomplete="off">
-                                    <div>
-                                        <input id="shindanInput" name="field" maxlength="100" class="form-control form-control-lg mb-2"
-                                        type="text" placeholder="なまえ"><input type="submit"
-                                        class="btn btn-primary btn-block btn-lg shindanButton" formmethod="POST"
-                                        value="診断する">
-                                    </div>
+                            <form action="/shindan/result" autocomplete="off">
+                                <div>
+                                    <input id="shindanInput" name="field" maxlength="100"
+                                        class="form-control form-control-lg mb-2" type="text" placeholder="なまえ">
+                                        <input type="submit" class="btn btn-primary btn-block btn-lg shindanButton" formmethod="POST" value="診断する">
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -270,7 +270,7 @@
                                 style="border: 0pt none; visibility: visible; min-width: 100%;">
                                 <div class="creative">
                                     <div class="image-container">
-                                        <img class="image" src="static/image/shindan_ad2.png">
+                                        <img class="image" src="/static/image/shindan_ad2.png">
                                     </div>
                                 </div>
                             </div>
@@ -478,10 +478,10 @@
 
         <!-- 右側のコンテンツ -->
         <div class="side">
-            <img src="static/image/hukidashi.jpg">
+            <img src="/static/image/hukidashi.jpg">
             <h3><b>診断したい名前</b>に好きな名前を入れて<br><b>診断する</b>を押してみよう！</h3>
-            <img src="static/image/charc.png">
-            
+            <img src="/static/image/charc.png">
+
         </div>
     </div>
 </body>
