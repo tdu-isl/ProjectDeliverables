@@ -6,6 +6,20 @@
 </head>
 
 <body>
-    {{message_me}}
+    <div>
+    <h1>問題一覧</h1>
+    <table border="1">
+        <tr>
+            <th>番号</th>
+            <th>問題名</th>
+        </tr>
+        {% for question in object_list %}
+        <tr>
+            <th><a href="{% url 'question' question.pk %}">{{ question.id }}</a></th>
+            <td>{{ question.title }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
 </body>
 </html>
