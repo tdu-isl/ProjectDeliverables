@@ -1,0 +1,36 @@
+@charset "utf-8";
+
+.wrapper {
+  overflow: hidden;
+}
+
+.main-screen {
+  float: left;
+  width: 100%;
+  margin-right: -500px;
+  padding-right: 500px;
+  box-sizing: border-box;
+
+}
+
+.side {
+  position: fixed;
+  float: right;
+  right: 0px;
+  width: 500px;
+  height: 100vh;
+  padding-top: 0px;
+  padding-left: 0px;
+  background-color: white;
+  border-color: #5cb6ff;
+  border-style: double;
+  border-width: 10px;
+}
+
+.side h3 {
+  position: absolute;
+  color: black;
+  top: 60px;
+  left: 50px;
+  font-size: 1.7rem;
+}
