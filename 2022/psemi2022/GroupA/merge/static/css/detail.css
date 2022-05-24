@@ -1,3 +1,16 @@
+p {
+    font-size: 18px;
+}
+
+.lr_margin {
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.img_nbutton {
+    width: 32%;
+}
+
 .img_ninsyou {
     width: 25%;
     height: 25%;
@@ -12,4 +25,31 @@
     margin-top: auto;
     margin-bottom: auto;
     font-size: 75px;
+}
+
+.bg-c1 {
+    background-color: rgba(76, 135, 245, 0.208);
+}
+
+.subtitle {
+    font-size: 36px;
+}
+
+.num {
+    background-color: rgba(76, 135, 245, 0.568);
+    font-size: 20px;
+}
+
+.attention {
+    font-size: 12px;
+}
+
+.attention_box {
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.footer_c {
+    background-color: rgba(128, 128, 128, 0.397);
+    text-align: right;
 }
