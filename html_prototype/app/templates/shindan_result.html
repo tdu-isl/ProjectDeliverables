@@ -161,12 +161,12 @@
                         <h5 class="px-3 py-3 text-center mb-3 subTitles"><i class="fas fa-share mr-2"></i>診断結果をつぶやこう！
                         </h5>
                         <div id="shareButtonsMd" class="px-3 mb-2">
-                            <div class="d-flex justify-content-between mb-2"><a target="_blank"
-                                    href="/shindan/result/twitter_coop"
+                            <form action="/shindan/result/twitter_coop" id="twitter_trans" autocomplete="off" method="post">
+                                <div class="d-flex justify-content-between mb-2"><button form="twitter_trans" name="username" value="{{message}}" target="_blank"
                                     class="flex-fill pointer-events-auto text-center btn-twitter btn-share-lg "><img
                                         class="btn-share-icon-lg btn-share-icon-twitter"
                                         src="https://dkhhsjgarvlsj.cloudfront.net/img/share/share-icon-twitter.svg?v=2"
-                                        alt=""><span class="btn-share-text-lg mx-2">ツイート(アカウント連携が必要です)</span></a></div>
+                                        alt=""><span class="btn-share-text-lg mx-2">ツイート(アカウント連携が必要です)</span></button></div></form>
                             <div class="d-flex justify-content-between mb-2"><span data-share_target="line"
                                     data-share_url="https://line.me/R/msg/text/?%E5%A5%BD%E3%81%8D%E3%81%AA%E4%BA%BA%E3%80%8C%E3%81%8E%E3%82%85%E3%83%BC%E3%81%A3%E3%81%A6%E3%81%97%E3%81%A6%E3%81%84%E3%81%84%EF%BC%9F%E3%80%8D%E3%80%80isl%E3%80%8C%E3%81%86%E3%82%93%E3%80%82%E3%81%8E%E3%82%85%E3%83%BC%E3%81%A3%E3%80%8D%E3%80%80%E5%A5%BD%E3%81%8D%E3%81%AA%E4%BA%BA%E3%80%8C%E3%81%88%E3%81%A3%E3%80%8D%E3%80%80isl%E3%80%8C%E3%81%93%E3%81%A3%E3%81%A1%E3%81%8B%E3%82%89%E3%81%97%E3%81%9F%E3%82%89%E3%83%80%E3%83%A1%E3%81%A0%E3%81%A3%E3%81%9F%EF%BC%9F%E3%80%8D%E3%80%80%E5%A5%BD%E3%81%8D%E3%81%AA%E4%BA%BA%E3%80%8C%E2%80%A6%E3%80%8D%E3%80%80%E5%A5%BD%E3%81%8D%E3%81%AA%E4%BA%BA%E3%81%AF%E9%BB%99%E3%81%A3%E3%81%A6%E4%BF%AF%E3%81%84%E3%81%9F%E3%81%BE%E3%81%BE%E3%82%82%E3%81%98%E3%82%82%E3%81%98%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E2%80%A6%0Ahttps%3A%2F%2Fshindanmaker.com%2F181846"
                                     class="flex-fill share-to pointer-events-auto text-center btn-line btn-share "><img
