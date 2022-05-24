@@ -28,7 +28,6 @@ def init():
 @app.route("/", methods=["POST", "GET"])
 def index():
     challenge_result = None
-    print(request.form.get("g-recaptcha-response", None))
     if request.form.get("g-recaptcha-response", None) is not None:
         url = "https://www.google.com/recaptcha/api/siteverify"
         body = {
@@ -36,7 +35,6 @@ def index():
             "response": request.form.get("g-recaptcha-response")
         }
         resp = requests.post(url, data=body)
-        print(resp.status_code)
         if resp.status_code == requests.codes.ok:
             if resp.json()["success"]:
                 challenge_result = ADMITTED_MSG
@@ -55,10 +53,10 @@ def detail():
 def add():
     return render_template("add.html")
 
-@app.route("/login")
+
+@app.route("/login", methods=["POST", "GET"])
 def login():
     challenge_result = None
-    print(request.form.get("g-recaptcha-response", None))
     if request.form.get("g-recaptcha-response", None) is not None:
         url = "https://www.google.com/recaptcha/api/siteverify"
         body = {
@@ -66,7 +64,6 @@ def login():
             "response": request.form.get("g-recaptcha-response")
         }
         resp = requests.post(url, data=body)
-        print(resp.status_code)
         if resp.status_code == requests.codes.ok:
             if resp.json()["success"]:
                 challenge_result = ADMITTED_MSG
@@ -74,6 +71,7 @@ def login():
                 challenge_result = DENIED_MSG.get(resp.json()["error-codes"][0], DENIED_MSG["unknown"])
 
     return render_template("login.html", sitekey=SITEKEY, secretkey=SECRETKEY, challenge_result=challenge_result, showup=challenge_result is not None)
+
 
 if __name__ == "__main__":
     init()
