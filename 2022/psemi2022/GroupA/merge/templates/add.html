@@ -1,128 +1,126 @@
 <!doctype html>
 <html lang="ja">
 
+  <head>
+    <title>reCAPTCHA-Practice</title>
+    <meta http-equiv="content-type" charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="../static/css/add.css" rel="stylesheet">
+  </head>
 
-<head>
-  <title>reCAPTCHA-Practice</title>
-  <meta http-equiv="content-type" charset="UTF-8">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <link href="../static/css/add.css" rel="stylesheet">
-</head>
-
-<body>
-  <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom">
-    <h3 class="my-0 mr-md-auto font-weight-normal">もっと知りたい人向け</h3>
-    <nav class="my-2 my-md-0 mr-md-3">
-      <a class="p-2 text-dark" href="/">ホーム</a>
-      <a class="p-2 text-dark" href="login">実践編</a>
-      <a class="p-2 text-dark" href="detail">GoogleのreCAPTCHAとは</a>
-      <a class="p-2 text-dark" href="">もっと知りたい人向け</a>
-    </nav>
-  </div>
-
-  <div class="pricing-header px-2 pt-md-5 pb-md-4 text-center bg-light lr_margin">
-    <h1 class="display-4">もっと知りたい人向け</h1>
-
-    <div class="border border-dark mx-5 py-2 mt-3 koumoku">
-      <div>項目</div>
-      <ul>
-        <li><a href="#kind">reCAPTCHAの種類</a></li>
-        <li><a href="#method">"v2"と"v3"の認証方法について</a></li>
-        <li><a href="#chara">"v2"、"v3"の特徴</a></li>
-        <li><a href="#use">"v2"、"v3"の使い分け方</a></li>
-      </ul>
+  <body>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom">
+      <h3 class="my-0 mr-md-auto font-weight-normal">もっと知りたい人向け</h3>
+      <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" href="/">ホーム</a>
+        <a class="p-2 text-dark" href="login">実践編</a>
+        <a class="p-2 text-dark" href="detail">GoogleのreCAPTCHAとは</a>
+        <a class="p-2 text-dark" href="">もっと知りたい人向け</a>
+      </nav>
     </div>
 
-    <div class="border border-primary mx-5 mt-3 bg-c1">
-      <p class="num" id="kind">reCAPTCHAの種類</p>
-      <p>reCAPTCHAには4種類あります。(1種類はサービス終了)</p>
-      <p>＜reCAPTCHA v1＞</p>
-      <p>"reCAPTCHA v1"は2018年3月に提供が終了した最も古いバージョンのreCAPTCHAです。</p>
-      <p>表示された歪んだ英数字を正しく入力させることで人間かbotか判断していました。</p>
-      <p>かつてはbotで歪んだ英数字を見分けることが難しいとされていましたが、突破されるようになってしまったため、現在では提供を終了しています。</p>
+    <div class="pricing-header px-2 pt-md-5 pb-md-4 text-center bg-light lr_margin">
+      <h1 class="display-4">もっと知りたい人向け</h1>
 
-      <p>＜reCAPTCHA v2＞</p>
-      <p>"reCAPTCHA v2"は、2012年はリリースされ、"私はロボットではありません"というメッセージを伴ったチェックボックスを表示するものです。</p>
-      <p>チェックボックスにチェックをし、人間と判断されなかった場合は画像認証が課せられ、その結果によって人間かbotか判断しています。</p>
+      <div class="border border-dark mx-5 py-2 mt-3 koumoku">
+        <div>項目</div>
+        <ul>
+          <li><a href="#kind">reCAPTCHAの種類</a></li>
+          <li><a href="#method">"v2"と"v3"の認証方法について</a></li>
+          <li><a href="#chara">"v2"、"v3"の特徴</a></li>
+          <li><a href="#use">"v2"、"v3"の使い分け方</a></li>
+        </ul>
+      </div>
 
-      <p>＜reCAPTCHA v2 inbisible＞</p>
-      <p>"reCAPTCHA v2 inbisible"は"v2"のチェックボックスが表示されないバージョンです。</p>
-      <p>ページ上には表示されませんがメールフォームなどで「送信」ボタンを押すと、人間かbotか判断し、</p>
-      <p>人間だと判断されなかった場合に"v2"と同様に画像認証が課せられて、人間かbotかを判断します。</p>
+      <div class="border border-primary mx-5 mt-3 bg-c1">
+        <p class="num" id="kind">reCAPTCHAの種類</p>
+        <p>reCAPTCHAには4種類あります。(1種類はサービス終了)</p>
+        <p>＜reCAPTCHA v1＞</p>
+        <p>"reCAPTCHA v1"は2018年3月に提供が終了した最も古いバージョンのreCAPTCHAです。</p>
+        <p>表示された歪んだ英数字を正しく入力させることで人間かbotか判断していました。</p>
+        <p>かつてはbotで歪んだ英数字を見分けることが難しいとされていましたが、突破されるようになってしまったため、現在では提供を終了しています。</p>
 
-      <p>＜reCAPTCHA v3＞</p>
-      <p>"reCAPTCHA v3"は2018年にリリースされた最新バージョンの"reCAPTCHA"です。</p>
-      <p>これまでのバージョンと違ってユーザ側の手間が一切かからないものになりました。</p>
-      <p>これは、メールフォームなどで「送信」ボタンを押すと、自動的に人間かbotか判断しています。</p>
-      <p>"reCAPTCHA"を設置したページでユーザの動きを機械学習して、ユーザの行動パターンを見極め、</p>
-      <p>スコアを付けてそのスコアが閾値を超えると人間と判断されるという仕組みになってます。</p>
+        <p>＜reCAPTCHA v2＞</p>
+        <p>"reCAPTCHA v2"は、2012年はリリースされ、"私はロボットではありません"というメッセージを伴ったチェックボックスを表示するものです。</p>
+        <p>チェックボックスにチェックをし、人間と判断されなかった場合は画像認証が課せられ、その結果によって人間かbotか判断しています。</p>
 
-      <p class="num" id="method">"v2"と"v3"の認証方法について</p>
-      <p>"v2"はチェックボックス、または不可視のトリガーのアクションでbotと疑われる場合に、画像認証でチェックするものです。</p>
-      <p>"v3"はユーザの環境や動作からスコアを算出し、ロボットの場合は"0"、人間の場合は"1"として"0-1"の間の数値を返します。</p>
-      <p>その返ってきた数値が、管理者が定めた閾値を超えたスコアになったユーザを認証するものになっています。</p>
-      <p>閾値を"0"に近づけると人間がbotと判断されにくくなりますが、botの偽装が容易になっていまいます。</p>
-      <p>逆に、閾値を"1"に近づけるとbotを防ぐ確率は上がりますが、人間がbotとして誤検出される可能性が高まってしまうので、設定する数値は注意が必要です。</p>
-      <p>また、v2は画像認証をクリアできれば認証されますが、v3は認証のクリア方法の案内が必要となります。</p>
+        <p>＜reCAPTCHA v2 inbisible＞</p>
+        <p>"reCAPTCHA v2 inbisible"は"v2"のチェックボックスが表示されないバージョンです。</p>
+        <p>ページ上には表示されませんがメールフォームなどで「送信」ボタンを押すと、人間かbotか判断し、</p>
+        <p>人間だと判断されなかった場合に"v2"と同様に画像認証が課せられて、人間かbotかを判断します。</p>
 
-      <p class="num" id="chara">"v2"、"v3"の特徴</p>
+        <p>＜reCAPTCHA v3＞</p>
+        <p>"reCAPTCHA v3"は2018年にリリースされた最新バージョンの"reCAPTCHA"です。</p>
+        <p>これまでのバージョンと違ってユーザ側の手間が一切かからないものになりました。</p>
+        <p>これは、メールフォームなどで「送信」ボタンを押すと、自動的に人間かbotか判断しています。</p>
+        <p>"reCAPTCHA"を設置したページでユーザの動きを機械学習して、ユーザの行動パターンを見極め、</p>
+        <p>スコアを付けてそのスコアが閾値を超えると人間と判断されるという仕組みになってます。</p>
 
-      <table class="table table-primary">
-        <thead>
-          <tr>
-            <th scope="col"></th>
-            <th scope="col">v2</th>
-            <th scope="col">v2 inbisible</th>
-            <th scope="col">v3</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">ユーザへの負担</th>
-            <td>✕</td>
-            <td>△</td>
-            <td>◯</td>
-          </tr>
-          <tr>
-            <th scope="row">技術的なコスト</th>
-            <td>◯</td>
-            <td>△</td>
-            <td>✕</td>
-          </tr>
-          <tr>
-            <th scope="row">プライバシー</th>
-            <td>◯</td>
-            <td>◯</td>
-            <td>△</td>
-          </tr>
-        </tbody>
-      </table>
+        <p class="num" id="method">"v2"と"v3"の認証方法について</p>
+        <p>"v2"はチェックボックス、または不可視のトリガーのアクションでbotと疑われる場合に、画像認証でチェックするものです。</p>
+        <p>"v3"はユーザの環境や動作からスコアを算出し、ロボットの場合は"0"、人間の場合は"1"として"0-1"の間の数値を返します。</p>
+        <p>その返ってきた数値が、管理者が定めた閾値を超えたスコアになったユーザを認証するものになっています。</p>
+        <p>閾値を"0"に近づけると人間がbotと判断されにくくなりますが、botの偽装が容易になっていまいます。</p>
+        <p>逆に、閾値を"1"に近づけるとbotを防ぐ確率は上がりますが、人間がbotとして誤検出される可能性が高まってしまうので、設定する数値は注意が必要です。</p>
+        <p>また、v2は画像認証をクリアできれば認証されますが、v3は認証のクリア方法の案内が必要となります。</p>
 
-      <p>ユーザへの負担は"v2"がチェックをクリック、画像認証の操作が必要なため一番負担が大きくなっています。</p>
-      <p>逆に"v3"は自動で人間かbotかを判断するので負担は少なくなっています。</p>
-      <p>技術的なコストは"v2"が一番簡単で"v2 inbisible"はトークンの発行が必要となります。</p>
-      <p>さらに"v3"はトークンの発行に加え、スコア判定の処理と誤検出時の調整が必要となります。</p>
-      <p>プライバシーは"v3"のみスコア判定を行うためにgoogleに情報を渡しているため"v2"よりは低くなってます。</p>
+        <p class="num" id="chara">"v2"、"v3"の特徴</p>
 
-      <p class="num" id="use">"v2"、"v3"の使い分け方</p>
-      <p>ユーザの負担だけを考えれば"v3"がいいのですが、人間でも環境などによってスコアが変動してしまう場合があるので、</p>
-      <p>必ず認証が通ると言えません。また、"v3"を設置するためにはフォームの送信処理をコードに組み込む必要がありますが、</p>
-      <p>"v2"の方が簡単に設置が可能です。なので、簡単に設置できてスパムが来ないようにしたければ"v2"の方がいい場合があります。</p>
+        <table class="table table-primary">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">v2</th>
+              <th scope="col">v2 inbisible</th>
+              <th scope="col">v3</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">ユーザへの負担</th>
+              <td>✕</td>
+              <td>△</td>
+              <td>◯</td>
+            </tr>
+            <tr>
+              <th scope="row">技術的なコスト</th>
+              <td>◯</td>
+              <td>△</td>
+              <td>✕</td>
+            </tr>
+            <tr>
+              <th scope="row">プライバシー</th>
+              <td>◯</td>
+              <td>◯</td>
+              <td>△</td>
+            </tr>
+          </tbody>
+        </table>
 
-      <!--
-      <p>v2は会員フォームや問い合わせフォームなど、ユーザ1人当たりの送信頻度が低く、万が一でも誤検知ではじかれてほしくない時に
-      v3はチャットや掲示板など高い頻度で何度も書き込むような時に
-      と使い分けたほうがいいです。</p>
-      -->
+        <p>ユーザへの負担は"v2"がチェックをクリック、画像認証の操作が必要なため一番負担が大きくなっています。</p>
+        <p>逆に"v3"は自動で人間かbotかを判断するので負担は少なくなっています。</p>
+        <p>技術的なコストは"v2"が一番簡単で"v2 inbisible"はトークンの発行が必要となります。</p>
+        <p>さらに"v3"はトークンの発行に加え、スコア判定の処理と誤検出時の調整が必要となります。</p>
+        <p>プライバシーは"v3"のみスコア判定を行うためにgoogleに情報を渡しているため"v2"よりは低くなってます。</p>
+
+        <p class="num" id="use">"v2"、"v3"の使い分け方</p>
+        <p>ユーザの負担だけを考えれば"v3"がいいのですが、人間でも環境などによってスコアが変動してしまう場合があるので、</p>
+        <p>必ず認証が通ると言えません。また、"v3"を設置するためにはフォームの送信処理をコードに組み込む必要がありますが、</p>
+        <p>"v2"の方が簡単に設置が可能です。なので、簡単に設置できてスパムが来ないようにしたければ"v2"の方がいい場合があります。</p>
+
+        <!--
+        <p>v2は会員フォームや問い合わせフォームなど、ユーザ1人当たりの送信頻度が低く、万が一でも誤検知ではじかれてほしくない時に
+        v3はチャットや掲示板など高い頻度で何度も書き込むような時に
+        と使い分けたほうがいいです。</p>
+        -->
+      </div>
     </div>
-  </div>
 
-  <footer>
-    <div class="footer_c">©p-semi groupA 2022</div>
-  </footer>
+    <footer>
+      <div class="footer_c">©p-semi groupA 2022</div>
+    </footer>
 
-</body>
+  </body>
 
 </html>
