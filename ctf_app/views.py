@@ -41,3 +41,18 @@ class QuestionCreateView(CreateView):
 class QuestionShowView(DetailView):
     template_name = 'question.html'
     model = Question
+
+
+# 未完成
+def vote(request):
+    form = QuestionForm(request.POST)
+    print(form.Meta.fields)
+    username = form.Meta.fields[0]
+    q = Question.objects.get(username)
+    if request.method == 'POST':
+        if 'good' in request.POST:
+            print(good)
+            q.vote_good(name=username)
+        elif 'bad' in request.POST:
+            print(bad)
+            q.vote_bad(name=username)
