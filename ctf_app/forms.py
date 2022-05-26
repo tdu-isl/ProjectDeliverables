@@ -14,9 +14,7 @@ class LoginForm(AuthenticationForm):
 class QuestionForm(forms.ModelForm):
     class Meta:
         model = Question
-        fields = ('title', 'text', 'answer')
+        fields = ('answer',)
         labels = {
-            'title': '題名',
-            'text': '本文',
             'answer': 'フラグ',
         }
