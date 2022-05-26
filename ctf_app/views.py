@@ -1,5 +1,6 @@
-from django.shortcuts import render
-from django.views.generic import CreateView, DetailView, ListView
+from django.shortcuts import render, redirect
+from django.views.generic import CreateView, UpdateView, DetailView, ListView
+from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -38,6 +39,41 @@ class QuestionCreateView(CreateView):
     success_url = reverse_lazy('index')
 
 
-class QuestionShowView(DetailView):
+class QuestionShowView(UpdateView):
     template_name = 'question.html'
     model = Question
+    form_class = QuestionForm
+
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        user = self.request.user
+        q = Question.objects.get(id=post.id)
+        # 回答者一覧に回答者の名前がない場合、追加
+        if (q.answer_user_exists(user.username) == False):
+            post.answer_user.set(q.answer_user.all())
+            post.answer_user.add(user)
+        # 回答が正解か判定し、
+        if (q.is_correct(post.answer) == True):
+            # 正解者一覧に正解者の名前がない場合、追加
+            if (q.solve_user_exists(user.username) == False):
+                post.solve_user.set(q.solve_user.all())
+                post.solve_user.add(user)
+        post.answer = q.answer
+        post.save()
+        return redirect('/ctf_app/')
+
+"""
+# 未完成
+def vote(request):
+    form = QuestionForm(request.POST)
+    print(form.Meta.fields)
+    username = form.Meta.fields[0]
+    q = Question.objects.get(username)
+    if request.method == 'POST':
+        if 'good' in request.POST:
+            print(good)
+            q.vote_good(name=username)
+        elif 'bad' in request.POST:
+            print(bad)
+            q.vote_bad(name=username)
+"""
