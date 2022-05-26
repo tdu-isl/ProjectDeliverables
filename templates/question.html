@@ -6,9 +6,11 @@
     <div>
         <h1>{{ question.title }}</h1>
         <p>{{ question.text }}</p>
-        <form method="get">
-        <input type="text" name="title"/>
-        <button type="submit">submit</button>
+        <p>正答率:{{ question.get_correct_answer_rate }}%</p>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="answer"/>
+            <button type="submit">submit</button>
         </form>
     </div>
 </body>
