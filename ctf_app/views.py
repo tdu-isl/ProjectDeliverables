@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
 
 from .models import Question
 from .forms import LoginForm, QuestionForm
@@ -16,6 +17,15 @@ from .forms import LoginForm, QuestionForm
 class QuestionListView(LoginRequiredMixin, ListView):
     template_name = 'index.html'
     model = Question
+
+    def get_context_data(self, **kwargs):
+        name = self.request.user.username
+        context = super().get_context_data(**kwargs)
+        context['has_solved_list'] = {}
+        for id in range(Question.objects.all().count()):
+            question = Question.objects.get(id=id+1)
+            context['has_solved_list'][id+1] = question.solve_user_exists(name)
+        return context
 
 
 class UserCreateView(CreateView):
@@ -45,35 +55,36 @@ class QuestionShowView(UpdateView):
     form_class = QuestionForm
 
     def form_valid(self, form):
-        post = form.save(commit=False)
         user = self.request.user
+        post = form.save(commit=False)
         q = Question.objects.get(id=post.id)
-        # 回答者一覧に回答者の名前がない場合、追加
-        if (q.answer_user_exists(user.username) == False):
-            post.answer_user.set(q.answer_user.all())
-            post.answer_user.add(user)
-        # 回答が正解か判定し、
-        if (q.is_correct(post.answer) == True):
-            # 正解者一覧に正解者の名前がない場合、追加
-            if (q.solve_user_exists(user.username) == False):
-                post.solve_user.set(q.solve_user.all())
-                post.solve_user.add(user)
-        post.answer = q.answer
-        post.save()
-        return redirect('/ctf_app/')
+        if 'answer' in self.request.POST:
+            # 回答者一覧に回答者の名前がない場合、追加
+            if not q.answer_user_exists(user.username):
+                post.answer_user.set(q.answer_user.all())
+                post.answer_user.add(user)
+            # 回答が正解か判定し、
+            if q.is_correct(post.answer):
+                messages.info(self.request, '正解')
+                # 正解者一覧に正解者の名前がない場合、追加
+                if not q.solve_user_exists(user.username):
+                    post.solve_user.set(q.solve_user.all())
+                    post.solve_user.add(user)
+            if not q.is_correct(post.answer):
+                messages.info(self.request, '不正解')
+            post.answer = q.answer
+            post.save()
+        #return HttpResponseRedirect('/ctf_app/')
+        return HttpResponseRedirect('/ctf_app/'+str(q.id))
 
-"""
-# 未完成
-def vote(request):
-    form = QuestionForm(request.POST)
-    print(form.Meta.fields)
-    username = form.Meta.fields[0]
-    q = Question.objects.get(username)
-    if request.method == 'POST':
-        if 'good' in request.POST:
-            print(good)
-            q.vote_good(name=username)
-        elif 'bad' in request.POST:
-            print(bad)
-            q.vote_bad(name=username)
-"""
+    """
+    if q.can_vote(user.username):
+        if 'vote_good_button' in self.request.POST:
+            post.voted_good_user.set(q.voted_good_user.all())
+            post.voted_good_user.add(user)
+        if 'vote_bad_button' in self.request.POST:
+            post.voted_bad_user.set(q.voted_bad_user.all())
+            post.voted_bad_user.add(user)
+        post.save()
+        return redirect('/ctf_app/'+post.id)
+    """
