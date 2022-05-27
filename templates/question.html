@@ -6,12 +6,33 @@
     <div>
         <h1>{{ question.title }}</h1>
         <p>{{ question.text }}</p>
-        <p>正答率:{{ question.get_correct_answer_rate }}%</p>
         <form method="post">
             {% csrf_token %}
             <input type="text" name="answer"/>
             <button type="submit">submit</button>
         </form>
+        <p>正答率:{{ question.get_correct_answer_rate }}%</p>
+        {% if question.field != None %}
+            <p>分野:{{ question.field }}</p>
+        {% endif %}
+        {% comment %}
+        未完成
+        <form method="post">
+            <input type="button" name="vote_good_button" value="高評価 {{ question.get_voted_good_user_num }}"/>
+            <input type="button" name="vote_bad_button" value="低評価 {{ question.get_voted_bad_user_num }}"/>
+        </form>
+        {% endcomment %}
+        {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                {% if message.tags %}
+                <script>
+                    alert('{{ message }}');
+                </script>
+                {% endif %}
+            {% endfor %}
+            </ul>
+        {% endif %}
     </div>
 </body>
 </html>
