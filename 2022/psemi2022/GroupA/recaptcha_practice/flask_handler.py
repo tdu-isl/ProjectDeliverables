@@ -9,9 +9,9 @@ def init():
     global SITEKEY, SECRETKEY
     global ADMITTED_MSG, DENIED_MSG
 
-    with open(".sitekey", mode="r") as f:
+    with open("recaptcha_practice/.sitekey", mode="r") as f:
         SITEKEY = f.read()
-    with open(".secretkey", mode="r") as f:
+    with open("recaptcha_practice/.secretkey", mode="r") as f:
         SECRETKEY = f.read()
 
     ADMITTED_MSG = "認証に成功しました。"
@@ -22,7 +22,7 @@ def init():
         "unknown": "認証に失敗しました。"
     }
 
-    app.run(port=8080, host="localhost", debug=True)
+    app.run(port=8080, host="localhost", debug=False)
 
 
 def verify_challenge():
