@@ -19,13 +19,17 @@
         }
       }
       window.onload = function () {
-        email = document.getElementById("email-form").value = "";
-        pw = document.getElementById("pw-form").value = "";
+        document.getElementById("email-form").value = "";
+        document.getElementById("pw-form").value = "";
+        
+        empty = document.getElementById("rc-test");
         for (let i = 0; i < 5000; i++) {
           window.scroll(0, i + 1);
+          empty.click();
         }
         for (let i = 0; i < 5000; i++) {
           window.scroll(0, 5000 - (i + 1))
+          empty.click();
         }
 
         if ({{ showup | tojson }}) {

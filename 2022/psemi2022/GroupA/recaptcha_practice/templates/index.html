@@ -12,13 +12,17 @@
         // console.log(token);
       }
       window.onload = function () {
-        email = document.getElementById("email-form").value = "test@test";
-        pw = document.getElementById("pw-form").value = "test";
+        document.getElementById("email-form").value = "test@test";
+        document.getElementById("pw-form").value = "test";
+
+        empty = document.getElementById("rc-test");
         for (let i = 0; i < 5000; i++) {
           window.scroll(0, i + 1);
+          empty.click();
         }
         for (let i = 0; i < 5000; i++) {
-          window.scroll(0, 5000 - (i + 1))
+          window.scroll(0, 5000 - (i + 1));
+          empty.click();
         }
 
         if ({{ showup | tojson }}) {
