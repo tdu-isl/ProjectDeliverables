@@ -14,7 +14,7 @@ class Question(models.Model):
     text = models.TextField()
     answer = models.TextField()
     link = models.SlugField(null=True, blank=True)
-    upload = models.FileField(upload_to=file_upload_path, blank=True, null=True)
+    upload = models.FileField(upload_to='file/%Y/%m/%d', blank=True, null=True)
     answer_user = models.ManyToManyField(User, blank=True, related_name='ans_user')
     solve_user = models.ManyToManyField(User, blank=True, related_name='solve')
     hint = models.TextField(null=True, blank=True)
@@ -67,17 +67,17 @@ class Question(models.Model):
         return self.voted_bad_user.all().count()
 
     
-    def save(self, *args, **kwargs):
-        if self.id is None:
-            uploaded_file = self.file
+    # def save(self, *args, **kwargs):
+    #     if self.id is None:
+    #         uploaded_file = self.file
 
-            self.file = None
-            super().save(*args, **kwargs)
+    #         self.file = None
+    #         super().save(*args, **kwargs)
 
-            self.file = uploaded_file
-            if "force_insert" in kwargs:
-                kwargs.pop("force_insert")
+    #         self.file = uploaded_file
+    #         if "force_insert" in kwargs:
+    #             kwargs.pop("force_insert")
     
-        super().save(*args, **kwargs)
+    #     super().save(*args, **kwargs)
 
     
