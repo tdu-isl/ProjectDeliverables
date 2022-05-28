@@ -11,9 +11,6 @@ from .models import Question
 from .forms import LoginForm, QuestionForm
 
 
-# def index(request):
-#     params = {"message_me": "Hello World"}
-#     return render(request, 'index.html', context=params)
 class QuestionListView(LoginRequiredMixin, ListView):
     template_name = 'index.html'
     model = Question
@@ -76,15 +73,3 @@ class QuestionShowView(UpdateView):
             post.save()
         #return HttpResponseRedirect('/ctf_app/')
         return HttpResponseRedirect('/ctf_app/'+str(q.id))
-
-    """
-    if q.can_vote(user.username):
-        if 'vote_good_button' in self.request.POST:
-            post.voted_good_user.set(q.voted_good_user.all())
-            post.voted_good_user.add(user)
-        if 'vote_bad_button' in self.request.POST:
-            post.voted_bad_user.set(q.voted_bad_user.all())
-            post.voted_bad_user.add(user)
-        post.save()
-        return redirect('/ctf_app/'+post.id)
-    """
