@@ -1,11 +1,14 @@
-<meta charset="UTF-8">
-<title>問題</title>
-</head>
+{% extends "base.html" %}
 
-<body>
+{% block title %}問題{% endblock title %}
+
+{% block content %}
+    <h4 class="mt-4 border-bottom">{{ question.title }}</h4>
     <div>
-        <h1>{{ question.title }}</h1>
         <p>{{ question.text }}</p>
+        {% if question.upload %}
+         <a href="{{ question.upload }}">添付資料</a>
+        {% endif %}
         <form method="post">
             {% csrf_token %}
             <input type="text" name="answer"/>
@@ -34,5 +37,4 @@
             </ul>
         {% endif %}
     </div>
-</body>
-</html>
+{% endblock content %}
