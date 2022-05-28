@@ -138,7 +138,9 @@
                                     var imglist = new Array(
                                         "/static/image/shindan_ad2.gif",
                                         "/static/image/shindan_ad3.gif",
-                                        "/static/image/shindan_ad4.gif");
+                                        "/static/image/shindan_ad4.gif",
+                                        "/static/image/shindan_ad5.gif",
+                                        "/static/image/shindan_ad6.gif");
                                     var selectnum = Math.floor(Math.random() * imglist.length);
                                     var output = "<img class='image' src=" + imglist[selectnum] + ">";
                                     document.write(output);
@@ -164,7 +166,9 @@
                                         var imglist = new Array(
                                             "/static/image/shindan_ad2.gif",
                                             "/static/image/shindan_ad3.gif",
-                                            "/static/image/shindan_ad4.gif");
+                                            "/static/image/shindan_ad4.gif",
+                                            "/static/image/shindan_ad5.gif",
+                                            "/static/image/shindan_ad6.gif");
                                         var selectnum = Math.floor(Math.random() * imglist.length);
                                         var output = "<img class='image' src=" + imglist[selectnum] + ">";
                                         document.write(output);
@@ -177,12 +181,16 @@
                         <h5 class="px-3 py-3 text-center mb-3 subTitles"><i class="fas fa-share mr-2"></i>診断結果をつぶやこう！
                         </h5>
                         <div id="shareButtonsMd" class="px-3 mb-2">
-                            <form action="/shindan/result/twitter_coop" id="twitter_trans" autocomplete="off" method="post">
-                                <div class="d-flex justify-content-between mb-2"><button form="twitter_trans" name="username" value="{{message}}" target="_blank"
-                                    class="flex-fill pointer-events-auto text-center btn-twitter btn-share-lg "><img
-                                        class="btn-share-icon-lg btn-share-icon-twitter"
-                                        src="https://dkhhsjgarvlsj.cloudfront.net/img/share/share-icon-twitter.svg?v=2"
-                                        alt=""><span class="btn-share-text-lg mx-2">ツイート(アカウント連携が必要です)</span></button></div></form>
+                            <form action="/shindan/result/twitter_coop" id="twitter_trans" autocomplete="off"
+                                method="post">
+                                <div class="d-flex justify-content-between mb-2"><button form="twitter_trans"
+                                        name="username" value="{{message}}" target="_blank"
+                                        class="flex-fill pointer-events-auto text-center btn-twitter btn-share-lg "><img
+                                            class="btn-share-icon-lg btn-share-icon-twitter"
+                                            src="https://dkhhsjgarvlsj.cloudfront.net/img/share/share-icon-twitter.svg?v=2"
+                                            alt=""><span
+                                            class="btn-share-text-lg mx-2">ツイート(アカウント連携が必要です)</span></button></div>
+                            </form>
                             <div class="d-flex justify-content-between mb-2"><span data-share_target="line"
                                     data-share_url="https://line.me/R/msg/text/?%E5%A5%BD%E3%81%8D%E3%81%AA%E4%BA%BA%E3%80%8C%E3%81%8E%E3%82%85%E3%83%BC%E3%81%A3%E3%81%A6%E3%81%97%E3%81%A6%E3%81%84%E3%81%84%EF%BC%9F%E3%80%8D%E3%80%80isl%E3%80%8C%E3%81%86%E3%82%93%E3%80%82%E3%81%8E%E3%82%85%E3%83%BC%E3%81%A3%E3%80%8D%E3%80%80%E5%A5%BD%E3%81%8D%E3%81%AA%E4%BA%BA%E3%80%8C%E3%81%88%E3%81%A3%E3%80%8D%E3%80%80isl%E3%80%8C%E3%81%93%E3%81%A3%E3%81%A1%E3%81%8B%E3%82%89%E3%81%97%E3%81%9F%E3%82%89%E3%83%80%E3%83%A1%E3%81%A0%E3%81%A3%E3%81%9F%EF%BC%9F%E3%80%8D%E3%80%80%E5%A5%BD%E3%81%8D%E3%81%AA%E4%BA%BA%E3%80%8C%E2%80%A6%E3%80%8D%E3%80%80%E5%A5%BD%E3%81%8D%E3%81%AA%E4%BA%BA%E3%81%AF%E9%BB%99%E3%81%A3%E3%81%A6%E4%BF%AF%E3%81%84%E3%81%9F%E3%81%BE%E3%81%BE%E3%82%82%E3%81%98%E3%82%82%E3%81%98%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E2%80%A6%0Ahttps%3A%2F%2Fshindanmaker.com%2F181846"
                                     class="flex-fill share-to pointer-events-auto text-center btn-line btn-share "><img
@@ -414,8 +422,10 @@
                         <div class="px-3 text-center pb-3">
                             <div id="shindanDescription" class="text-left d-inline-block text-break">
                                 <div id="shindanDescriptionGradient" style="display: none;"></div><span
-                                    id="shindanDescriptionDisplay">「I love you」をあなた風に翻訳したー」もどうぞ→http://shindanmaker.com/211384 他の診断もどうぞ→http://shindanmaker.com/author/qen000<a
-                                        class="internalUrl mr-1" rel="ugc" href="http://shindanmaker.com/477914"
+                                    id="shindanDescriptionDisplay">「I love
+                                    you」をあなた風に翻訳したー」もどうぞ→http://shindanmaker.com/211384
+                                    他の診断もどうぞ→http://shindanmaker.com/author/qen000<a class="internalUrl mr-1" rel="ugc"
+                                        href="http://shindanmaker.com/477914"
                                         target="_blank">http://shindanmaker.com/477914</a> )</span>
                                 <div id="shindanDescriptionReadMore" class="text-left"><button
                                         id="shindanDescriptionReadMoreBtn" type="button"
@@ -434,8 +444,7 @@
                                         class="a label-user-shindan user-modal-show user-authorLabel-LYPD4MW71G"
                                         data-account_id="LYPD4MW71G"><img
                                             class="label-user-shindan-avatar rounded-circle mr-2 user-avatar-LYPD4MW71G"
-                                            src="/static/image/userlogo.png"
-                                            alt="@otoonep"><span
+                                            src="/static/image/userlogo.png" alt="@otoonep"><span
                                             class="user-screen_name-LYPD4MW71G">@islisl</span></span>
                                 </div>
                                 <div class="ml-auto text-right text-nowrap"><span title="診断人数"

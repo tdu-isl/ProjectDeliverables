@@ -27,12 +27,12 @@
   border-width: 10px;
 }
 
-.side h3 {
+.side p {
   position: absolute;
   color: black;
   top: 80px;
-  left: 50px;
-  font-size: 1.7rem;
+  left: 55px;
+  font-size: 20px;
 }
 .side div{
   padding-top: 80px;
