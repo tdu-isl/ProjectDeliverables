@@ -1,0 +1,28 @@
+{
+  "name": "chrome-stylize",
+  "author": "Hiroto Ogawa",
+  "description": "chrome extension for Psemi final task.",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "web_accessible_resources": [
+    "*"
+  ],
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://twitter.com/home/*",
+        "https://twitter.com/explore/*",
+        "https://twitter.com/notifications/*",
+        "https://twitter.com/messages/*",
+        "https://twitter.com/i/*",
+        "https://twitter.com/*/lists/"
+      ],
+      "css": ["twitter/introduction/style.css"],"js": ["jquery.min.js","twitter/introduction/introduction.js"]
+    },
+    {
+      "matches": ["https://twitter.com/intent/*"],
+      "css": ["twitter/result/style.css"],"js": ["jquery.min.js","twitter/result/result.js"]
+    }
+  ]
+}
