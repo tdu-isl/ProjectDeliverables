@@ -46,7 +46,7 @@ class QuestionCreateView(CreateView):
     success_url = reverse_lazy('index')
 
 
-class QuestionShowView(UpdateView):
+class QuestionShowView(LoginRequiredMixin, UpdateView):
     template_name = 'question.html'
     model = Question
     form_class = QuestionForm
