@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}問題{% endblock title %}
+{% block title %}問題{{question.id}}{% endblock title %}
 
 {% block content %}
     <h4 class="mt-4 border-bottom">{{ question.title }}</h4>
     <div>
-        <p>{{ question.text }}</p>
+        <p>{{ question.text | linebreaksbr }}</p>
         {% if question.upload %}
          <a href="{{ question.upload }}">添付資料</a>
         {% endif %}
