@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, intial-scale=1">
+    <title>p-semi 最終課題 C班</title>
+    <link rel="stylesheet" href="/static/css/finish.css">
+    <link rel="icon" href="/static/image/favicon.png">
+    <script>
+        (function(d) {
+          var config = {
+            kitId: 'ydn4scx',
+            scriptTimeout: 3000,
+            async: true
+          },
+          h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+        })(document);
+      </script>
+</head>
+
+<body>
+    <main>
+        <div class="container-idpw">
+            <img src="/static/image/background_alert.png">
+            <p1>{{ userid }}</p1>
+            <p2>{{ password }}</p2>
+        </div>
+
+        <div class="container-explain">
+            <img src="/static/image/background_explain.png">
+        </div>
+        
+        <div class="container-higai">
+            <img src="/static/image/background_higai.png">
+            <div class="higai_text">
+                <img src="/static/image/higai_text.png">
+            </div>
+        </div>
+
+        <div class="container-taisaku">
+            <img src="/static/image/background_taisaku.png">
+            <div class="taisaku_text">
+                <img src="/static/image/taisaku_text.png">
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

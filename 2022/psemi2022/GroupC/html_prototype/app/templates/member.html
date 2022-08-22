@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, intial-scale=1">
+    <title>p-semi 最終課題 C班</title>
+    <link rel="stylesheet" href="/static/css/member.css">
+    <link rel="icon" href="/static/image/favicon.png">
+    <script>
+        (function (d) {
+            var config = {
+                kitId: 'ydn4scx',
+                scriptTimeout: 3000,
+                async: true
+            },
+                h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
+        })(document);
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg" style="background-color:rgba(58, 58, 58, 0.836);" fixed-top>
+        <!-- .container-fluid -->
+        <div class="container-fluid">
+            <!-- ロゴ-->
+            <a class="navbar-brand">
+                <img src="static/image/nav_logo.png" alt="ブランド" width="300rem" class="d-inline-block align-top">
+            </a>
+            <div class="collapse navbar-collapse justify-content-end" id="Navber">
+                <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Top</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/member">Member</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://tdu-isl.github.io/home/">ISL</a>
+                    </li>
+            </div>
+            <!-- /.navbar-->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <main>
+        <div class="container-text">
+            <li>鈴木松卓：&emsp;リーダー　サイト設計(トップページ、診断メーカー)</li>
+        </div>
+        <div class="container-text">
+            <li>小川博徒：&emsp;テーマ原案　サイト設計(twitterタイムライン)</li>
+        </div>
+        <div class="container-text">
+            <li>峰岡侑都：&emsp;ページデザイン(トップページ、総括)</li>
+        </div>
+        <div class="container-text">
+            <li>坂木佳菜：&emsp;キャラクターデザイン、広告画像</li>
+        </div>
+    </main>
+</body>
+
+</html>
