@@ -1,0 +1,40 @@
+body{
+ margin: auto;
+}
+
+#header{
+ background: #0f0;
+ padding: 15px 30px;
+ flex-direction: column;
+ display: flex;
+ align-items: center;
+ margin: 0px 0px 10px;
+ width: auto;
+ height: auto;
+ justify-content: space-between;
+}
+
+h1{
+ float: left;
+ margin: 0px 0px 8px;
+}
+
+table{
+ border-collapse: collapse;
+ vertical-align: middle;
+ background: #E0E0E0;
+}
+
+th{
+ text-align: left;
+}
+
+td{
+ width: 100%;
+ background: #f1f1f1;
+}
+
+@media(max-width: 1024px){
+ #header{
+ }
+}

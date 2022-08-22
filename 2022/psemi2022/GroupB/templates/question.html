@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}問題{{question.id}}{% endblock title %}
+
+{% block content %}
+    <h4 class="mt-4 border-bottom">{{ question.title }}</h4>
+    <div>
+        <p>{{ question.text | linebreaksbr }}</p>
+        {% if question.upload %}
+         <a href="{{ question.upload }}">添付資料</a>
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="answer"/>
+            <button type="submit">submit</button>
+        </form>
+        <p>正答率:{{ question.get_correct_answer_rate }}%</p>
+        {% if question.field != None %}
+            <p>分野:{{ question.field }}</p>
+        {% endif %}
+        {% comment %}
+        未完成
+        <form method="post">
+            <input type="button" name="vote_good_button" value="高評価 {{ question.get_voted_good_user_num }}"/>
+            <input type="button" name="vote_bad_button" value="低評価 {{ question.get_voted_bad_user_num }}"/>
+        </form>
+        {% endcomment %}
+        {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                {% if message.tags %}
+                <script>
+                    alert('{{ message }}');
+                </script>
+                {% endif %}
+            {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endblock content %}
