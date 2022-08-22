@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>reCAPTCHA-TEST</title>
+    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script>
+    function onSuccess(token) {
+      console.log(token);
+    }
+    // window.onload = function() {
+    //   t = document.getElementById("rc-test1");
+    //   for (let i = 0; i < 1000000; i++) {
+    //     t.click();
+    //   }
+    // }
+    window.onload = function() {
+      email = document.getElementById("email-form");
+      email.value = "test@test";
+      pw = document.getElementById("pw-form");
+      pw.value = "test";
+      // t = document.getElementById("empty");
+      // for (let i = 0; i < 10000; i++) {
+      //   t.click();
+      // }
+      for (let i = 0; i < 5000; i++) {
+        window.scroll(0, i+1);
+      }
+      for (let i = 0; i < 5000; i++) {
+        window.scroll(0, 5000 - (i+1))
+      }
+      // for (let i = 0; i < 5000; i+=10) {
+      //   for (let j = 0; j < screen.availWidth; j+=10) {
+      //     window.scroll(j, i);
+      //   }
+      // }
+    }
+    </script>
+  </head>
+  <body>
+    <h1>TEST</h1>
+    <!-- <div id="empty" style="height: 5000px;"></div> -->
+    <form id="rc-test1" method="post">
+      <div class="mb-2" style="visibility: hidden;">
+        <label for="input-email" class="form-label">Email Address</label>
+        <input name="email" type="email" id="email-form" class="form-control" aria-describedby="email-help">
+        <div id="email-help" class="form-text">any email address can pass.</div>
+      </div>
+      <div class="mb-2" style="visibility: hidden;">
+        <label for="input-password" class="form-label">Password</label>
+        <input name="pw" type="password" id="pw-form" class="form-control" aria-describedby="pw-help">
+        <div id="pw-help" class="form-text">any password can pass.</div>
+      </div>
+      <div class="g-recaptcha" data-sitekey={{ sitekey }} data-callback="onSuccess"></div>
+      <input id="rc-submit" type="submit" value="submit">
+    </form>
+    <script>
+    //   window.onload = function() {
+    //   email = document.getElementById("email-form");
+    //   email.value = "test@test";
+    //   pw = document.getElementById("pw-form");
+    //   pw.value = "test";
+    //   t = document.getElementById("rc-test1");
+    //   for (let i = 0; i < 10000; i++) {
+    //     t.click();
+    //   }
+    //   for (let i = 0; i < 5000; i++) {
+    //     window.scroll(0, i+1);
+    //   }
+    //   for (let i = 0; i < 5000; i++) {
+    //     //window.scroll(0, 5000 - (i+1))
+    //   }
+    //   // for (let i = 0; i < 5000; i+=10) {
+    //   //   for (let j = 0; j < screen.availWidth; j+=10) {
+    //   //     window.scroll(j, i);
+    //   //   }
+    //   // }
+    // }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+p {
+    font-size: 18px;
+}
+
+.koumoku {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.lr_margin {
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.bg-c1 {
+    background-color: rgba(76, 135, 245, 0.208);
+}
+
+.num {
+    background-color: rgba(76, 135, 245, 0.568);
+    font-size: 20px;
+}
+
+.footer_c {
+    background-color: rgba(128, 128, 128, 0.397);
+    text-align: right;
+}
